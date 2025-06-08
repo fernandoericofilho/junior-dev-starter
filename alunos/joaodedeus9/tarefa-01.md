@@ -2,3 +2,4 @@ Olá! Meu nome é João de Deus Silva Pereira, tenho 19 anos, atualmente moro na
 análise e desenvolvimento de sistemas na UNIFIP campos Patos PB.
 Tenho como objetivo profissional atuar na área de desenvolvimento de software, contribuindo com soluções inovadoras, acessíveis e eficientes.
 Acredito que a tecnologia tem um papel fundamental na transformação digital das empresas e na melhoria da sociedade como um todo.
+
