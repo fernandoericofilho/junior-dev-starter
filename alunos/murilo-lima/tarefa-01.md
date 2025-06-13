@@ -1,8 +1,8 @@
 ## Apresentação pessoal - Murilo Lima
 
-        Engenheiro de software júnior, com sólida base em desenvolvimento de produtos digitais, metodologias ágeis e gestão de projetos. Possui mestrado em Engenharia de Software e experiência prática na construção de aplicações full-stack utilizando JavaScript, Python e Django. Capacidade comprovada de colaborar com equipes multidisciplinares, traduzir requisitos de negócio em soluções escaláveis e entregar experiências de usuário de alta qualidade.
+Engenheiro de software júnior, com sólida base em desenvolvimento de produtos digitais, metodologias ágeis e gestão de projetos.possui mestrado em Engenharia de Software e experiência prática na construção de aplicações full-stack utilizando JavaScript, Python e Django. Capacidade comprovada de colaborar com equipes multidisciplinares, traduzir requisitos de negócio em soluções escaláveis e entregar experiências de usuário de alta qualidade.
 
-        Mais detalhes em https://github.com/omurilolima
+Mais detalhes em https://github.com/omurilolima
 
 ## 📝 Tarefa
 
@@ -21,9 +21,8 @@ Após pelo menos 3 dias de estudo (mínimo de 1h por dia), escreva no arquivo `t
 
 ### 3. Um pequeno resumo com o que aprendeu (em 1 a 2 parágrafos)
 
-        Sobre react, estou aprendendo a criar um site, coletanto o conteúdo de uma API, utilizando Axios. Aprendi a fazer fetch dos dados, apresentar skelletons enquanto os dados estão carregando, criar filtros e compartilhar useStates entre componentes.
-
-        Sobre banco de Dados, revisei todos os conteúdos recomentados por Fernando, pra fixar melhor os conceitos, já que faz uns meses que criei um banco de dados.
+Sobre react, estou aprendendo a criar um site, coletanto o conteúdo de uma API, utilizando Axios. Aprendi a fazer fetch dos dados, apresentar skelletons enquanto os dados estão carregando, criar filtros e compartilhar useStates entre componentes.
+Sobre banco de Dados, revisei todos os conteúdos recomentados por Fernando, pra fixar melhor os conceitos, já que faz uns meses que criei um banco de dados.
 
 ### 💬 Extra: Explique com suas palavras
 
@@ -32,7 +31,7 @@ No final do seu resumo, **explique com suas próprias palavras**:
 - O que são formas normais e qual a importância da normalização em um banco de dados?
 - Dê um exemplo (simples) de como uma tabela mal estruturada pode ser melhorada usando normalização.
 
-        Normalização é um processo de organização das tabelas de um banco de dados para: Eliminar dados repetidos, evitar anomalias e garantir integridade dos dados. É muito importante para trazer mais clareza, consistência nos dados e evitar problemas futuros.
+Normalização é um processo de organização das tabelas de um banco de dados para: Eliminar dados repetidos, evitar anomalias e garantir integridade dos dados. É muito importante para trazer mais clareza, consistência nos dados e evitar problemas futuros.
 
 #### ❌ Exemplo de violação da 2ª Forma Normal (2FN) - Eliminar dependência parcial
 
