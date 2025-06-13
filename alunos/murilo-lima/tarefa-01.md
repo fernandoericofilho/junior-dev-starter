@@ -1,6 +1,6 @@
 ## Apresentação pessoal - Murilo Lima
 
-Engenheiro de software júnior, com sólida base em desenvolvimento de produtos digitais, metodologias ágeis e gestão de projetos.possui mestrado em Engenharia de Software e experiência prática na construção de aplicações full-stack utilizando JavaScript, Python e Django. Capacidade comprovada de colaborar com equipes multidisciplinares, traduzir requisitos de negócio em soluções escaláveis e entregar experiências de usuário de alta qualidade.
+Engenheiro de software júnior, com sólida base em desenvolvimento de produtos digitais, metodologias ágeis e gestão de projetos. Possui mestrado em Engenharia de Software e experiência prática na construção de aplicações full-stack utilizando JavaScript, Python e Django. Capacidade comprovada de colaborar com equipes multidisciplinares, traduzir requisitos de negócio em soluções escaláveis e entregar experiências de usuário de alta qualidade.
 
 Mais detalhes em https://github.com/omurilolima
 
