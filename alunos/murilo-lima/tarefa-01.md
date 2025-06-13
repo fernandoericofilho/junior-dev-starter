@@ -1,42 +1,64 @@
-## 👋 Hello, I'm Murilo Lima
+## Apresentação pessoal - Murilo Lima
 
-🚀 **Software Developer | Transforming Ideas into Code**
-<img align="center" alt="Javascript" height="22" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
-<img align="center" alt="Typescript" height="22" width="30" src="https://raw.githubusercontent.com/devicons/devicon/refs/heads/master/icons/typescript/typescript-original.svg">
-<img align="center" alt="Python" height="22" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg">
-<img align="center" alt="HTML" height="22" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
-<img align="center" alt="CSS" height="22" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
+        Engenheiro de software júnior, com sólida base em desenvolvimento de produtos digitais, metodologias ágeis e gestão de projetos. Possui mestrado em Engenharia de Software e experiência prática na construção de aplicações full-stack utilizando JavaScript, Python e Django. Capacidade comprovada de colaborar com equipes multidisciplinares, traduzir requisitos de negócio em soluções escaláveis e entregar experiências de usuário de alta qualidade.
 
-With 10+ years of experience as a Technical Product Owner in Brazil, I’m now pursuing my passion for building software by transitioning into a Software Developer role. I hold a <code>Master’s in Software Engineering</code> and recently completed a Full Stack program at UCD, where I’ve been developing modern web applications using Python, Django, React, TypeScript, and PostgreSQL.
+        Mais detalhes em https://github.com/omurilolima
 
-- **Languages**: JavaScript, Python, SQL, HTML5, CSS3
-- **Frameworks/Libraries**: React, TypeScript, Django, Flask, jQuery, Bootstrap
-- **Databases**: PostgreSQL, SQLite, ElephantSQL
-- **Cloud/DevOps**: AWS, Google Cloud, Heroku
-- **Other Tools**: Stripe API, Git, CI/CD, Google Apps, Jira
+## 📝 Tarefa
 
-## 🌟 Featured Projects
+Após pelo menos 3 dias de estudo (mínimo de 1h por dia), escreva no arquivo `tarefa-01.md`:
 
-- **[Guitar Store](https://github.com/omurilolima/guitar-store)** – A full-stack e-commerce platform for buying and selling guitars, built with **Python, Javascript, Django, and PostgreSQL**, featuring authentication, shopping cart, and secure payments.
-- **[Games Hub](https://github.com/omurilolima/game-hub)** – A dynamic gaming discovery platform developed with **React, Typescript and RAWG API**, allowing users to explore, filter, and find details about thousands of games.
-- **[The Wine Bar](https://github.com/omurilolima/the-wine-bar)** – A comprehensive website for a wine-specialized restaurant based in Dublin, Ireland. Developed with **HTML and CSS**.
+### 1. O que você estudou?
 
-## 🏅 Education
+    - Esta semana estou continuando o curso de React, que estou fazendo no codewithmosh.com;
+    - Revisei os conceitos de Bancos de Dados Relacionais para a tarefa-01.
+    - Revisei alguns conceitos de git pra facilitar a mudança de contexto/repositório entre o curso de react e esta tarefa.
+    - Atualizei o perfil do Linkedin.
 
-- **Full Stack Software Development** | University College Dublin, Ireland | 2023
-- **MSc in Software Engineering** | Cesar School, Brazil | 2022
-- **MBA in Digital Marketing** | Estácio de Sá University, Brazil | 2012
-- **BA in Information Management Systems** | UniNassau, Brazil | 2009
+### 2. As fontes que utilizou
 
-## 🎯 Certifications
+    - codewithmosh.com, chatGPT e Youtube
 
-- **Atlassian Agile Project Management** Professional Certificate | Atlassian | 2025
-- **Product Management** | Produtos Incríveis | 2020
-- **Team Kanban Practitioner** | Kanban University | 2019.
-- **Certified Scrum Product Owner** | Scrum Institute | 2019.
-- **PMP® Certification Training Course** | PMI | 2018
-- **Certified Scrum Master (CSM)**, Scrum Alliance | 2017
+### 3. Um pequeno resumo com o que aprendeu (em 1 a 2 parágrafos)
 
-## ✅ Career Transition
+        Sobre react, estou aprendendo a criar um site, coletanto o conteúdo de uma API, utilizando Axios. Aprendi a fazer fetch dos dados, apresentar skelletons enquanto os dados estão carregando, criar filtros e compartilhar useStates entre componentes.
 
-I'm actively seeking opportunities to contribute as a software developer, bringing together my project management expertise and technical skills to build impactful software solutions.
+        Sobre banco de Dados, revisei todos os conteúdos recomentados por Fernando, pra fixar melhor os conceitos, já que faz uns meses que criei um banco de dados.
+
+### 💬 Extra: Explique com suas palavras
+
+No final do seu resumo, **explique com suas próprias palavras**:
+
+- O que são formas normais e qual a importância da normalização em um banco de dados?
+- Dê um exemplo (simples) de como uma tabela mal estruturada pode ser melhorada usando normalização.
+
+        Normalização é um processo de organização das tabelas de um banco de dados para: Eliminar dados repetidos, evitar anomalias e garantir integridade dos dados. É muito importante para trazer mais clareza, consistência nos dados e evitar problemas futuros.
+
+#### ❌ Exemplo de violação da 2ª Forma Normal (2FN) - Eliminar dependência parcial
+
+Problema: `nome_produto` e `preço_unitário` dependem somente de `produto_id`, não da chave composta inteira `pedido_id + produto_id`.
+
+| pedido_id | produto_id | nome_produto | preço_unitário |
+| --------- | ---------- | ------------ | -------------- |
+| 101       | 10         | Teclado      | 150.00         |
+| 101       | 11         | Mouse        | 80.00          |
+| 102       | 10         | Teclado      | 150.00         |
+
+#### ✅ Aplicando a 2FN, podemos separar os dados dependentes em outra tabela
+
+Desta forma teremos uma tabela para registrar os produtos de cada pedido; e outra para registrar os dados fixos de cada produto
+
+**Tabela: pedidos_produtos**
+
+| pedido_id | produto_id |
+| --------- | ---------- |
+| 101       | 10         |
+| 101       | 11         |
+| 102       | 10         |
+
+**Tabela: produtos**
+
+| produto_id | nome_produto | preço_unitário |
+| ---------- | ------------ | -------------- |
+| 10         | Teclado      | 150.00         |
+| 11         | Mouse        | 80.00          |
