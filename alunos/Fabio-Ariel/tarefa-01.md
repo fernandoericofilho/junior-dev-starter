@@ -17,7 +17,7 @@ Aprendi as três primeiras formas normais:
 - A 2FN elimina dependências parciais entre colunas que não são chave primária;
 - A 3FN elimina dependências transitivas, ou seja, onde um atributo depende de outro que não é chave primária.
 
-Fontes Utilizadas + Linkedin:
+Fontes Utilizadas:
 - Materiais disponibilizados na faculdade:
   - [Modelo Logico.pdf](https://github.com/user-attachments/files/20735239/Modelo.Logico.pdf)
   - [Modelo Fisico.pdf](https://github.com/user-attachments/files/20735240/Modelo.Fisico.pdf)
@@ -29,4 +29,4 @@ Fontes Utilizadas + Linkedin:
     - link2:https://www.youtube.com/watch?v=yQkp1Eze400
     - link3:https://www.youtube.com/watch?v=Cj84bb04tio
 
-Linkedin:https://www.linkedin.com/in/fabio-ariel-vieira-bezerra-82965130b/
+
