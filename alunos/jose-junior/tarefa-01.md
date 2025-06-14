@@ -84,3 +84,122 @@ Relacionamento: `Matriculam-se`.
 - Um **aluno** pode se matricular em **vários cursos**;
 - Cada **curso** pode ter **vários alunos**;
 - Este é um exemplo de **relacionamento N:N**.
+
+### Normalização
+
+A Normalização é um **processo sistemático de organização dos dados** em um banco de dados relacional com o objetivo de:  
+- Eliminar redundâncias;
+- Evitar anomalias na inserção, atualização e exclusão dos dados;
+- Garantir a integridade e a consistência dos dados.  
+
+Este processo é implementado a partir da aplicação de um conjunto de regras, denominado **Formas Normais**, proposto pelo matemático *Edward Codd*, na década de 70.
+
+#### 1ª Forma Normal (1FN)
+> **Regra**: Eliminar grupos repetitivos e **garantir que todos os atributos sejam atômicos** (sem múltiplos valores em uma mesma célula).  
+
+Dessa forma, uma tabela está na primeira forma normal quando **contém apenas campos atômicos** (campos que não são nem compostos e nem multivalorados).  
+Tabelas com colunas como: `telefone1` e `telefone2` ou que armazenam vários valores em uma única célula, como: `produto: "Mouse, Teclado"` violam a atomicidade.
+
+Tomemos como exemplo a seguinte tabela `Funcionários`:
+
+| <u>Matrícula</u> | CPF | Nome | Telefone |  
+| :---: | :---: | :---: | :---: |
+| 0012 | 08732456743 | JOÃO PEDRO NASCIMENTO | 87273653, 99856373 |
+| 0042 | 09347678260 | BIANCA FERREIRA SANTOS | 98736768, 87654656 |
+| 0032 | 09745636666 | FERNANDO CAVALCANTI | 98734767 |  
+
+Como solução para esse exemplo, pode-se criar uma tabela para o campo/atributo multivalorado, incluindo uma chave estrangeira para a tabela original:
+
+`Funcionários`
+| <u>Matrícula</u> | CPF | Nome | 
+| :---: | :---: | :---: |
+| 0012 | 08732456743 | JOÃO PEDRO NASCIMENTO |
+| 0042 | 09347678260 | BIANCA FERREIRA SANTOS |
+| 0032 | 09745636666 | FERNANDO CAVALCANTI |
+
+`Telefones`
+| Matrícula (FK) | <u>Telefone</u> |
+| :---: | :---: |
+| 0012 | 87273653 |
+| 0012 | 99856373 |
+| 0042 | 98736768 |
+| 0042 | 87654656 |
+| 0032 | 98734767 |
+
+#### 2ª Forma Normal (2FN)
+
+> **Regra**: Estar na 1FN e **remover dependências parciais** (quando atributos dependem apenas de parte da chave primária composta).
+
+Dessa forma, uma tabela está na segunda formal normal **se estiver na 1FN** e **se os campos dependerem de todos os campos da chave primária composta**.  
+Essa FN é aplicável quando a chave primária é composta (por exemplo: `numero` e `codigo_produto`) e há campos que dependem apenas de uma parte da chave.
+
+Tomemos como exemplo a seguinte tabela `Vendas`:
+
+| <u>Numero</u> | <u>Codigo_Produto</u> | Nome_Produto | Valor_Produto | Quantidade | Valor_Total |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| 100 | 1 | Caderno | 10,00 | 2 | 20,00 |
+| 200 | 2 | Lápis | 1,50 | 3 | 4,50 |
+| 300 | 2 | Lápis | 1,50 | 4 | 6,00 |
+| 300 | 3 | Livro | 50,00 | 2 | 100,00 |
+| 300 | 4 | Etiquetas | 2,50 | 5 | 12,50 |
+| 400 | 3 | Livro | 50,00 | 1 | 50,00 |
+
+Como pode-se observar no exemplo acima, os campos `nome_produto` e `valor_produto` dependem funcionalmente de `codigo_produto`, que é parte da chave primária composta.
+
+Como solução para esse exemplo, pode-se criar uma nova tabela que conterá esses campos que dependem apenas de parte (`codigo_produto`) da chave primária composta e a chave primária será o próprio `codigo_produto`:
+
+`Vendas`  
+| <u>Numero</u> | <u>Codigo_Produto (FK)</u> | Quantidade | Valor_Total |
+| :---: | :---: | :---: | :---: |
+| 100 | 1 | 2 | 20,00 |
+| 200 | 2 | 3 | 4,50 |
+| 300 | 2 | 4 | 6,00 |
+| 300 | 3 | 2 | 100,00 |
+| 300 | 4 | 5 | 12,50 |
+| 400 | 3 | 1 | 50,00 |
+
+`Produtos`
+| <u>Codigo_Produto</u> | Nome_Produto | Valor_Produto |
+| :---: | :---: | :---: |
+| 1 | Caderno | 10,00 |
+| 2 | Lápis | 1,50 |
+| 2 | Lápis | 1,50 |
+| 3 | Livro | 50,00 |
+| 4 | Etiquetas | 2,50 |
+| 3 | Livro | 50,00 |
+
+#### 3ª Forma Normal (3FN)
+
+> **Regra**: Estar na 2FN e **eliminar dependências transitivas** (quando um atributo depende de outro atributo que não é chave primária).
+
+Dessa forma, uma tabela está na terceira forma normal se estiver na 2FN e não possui dependência transitiva. Por exemplo a tabela `Turmas`:
+
+| <u>Codigo_Turma</u> | Professor | Numero_Sala | Capacidade_Sala |
+| :---: | :---: | :---: | :---: |
+| 002 | João Ferreira Martins | 101 | 50 |
+| 003 | Pedro Cardoso de Melo | 102 | 30 |
+| 001 | Pedro Cardoso de Melo | 204 | 25 |
+| 025 | Fernando Gomes Silva | 403 | 30 |
+
+Como pode-se observar no exemplo acima, o campo `capacidade_sala` depende funcionalmente do campo `numero_sala`.
+
+Como solução para esse exemplo é criada uma tabela que tem como chave primária o campo determinante (`numero_sala`) e a(s) coluna(s) com dependência transitiva (`capacidade_sala`) é movida para essa nova tabela, tendo como resultado as seguintes tabelas:
+
+`Turmas`
+| <u>Codigo_Turma</u> | Professor | <u>Numero_Sala (FK)</u> |
+| :---: | :---: | :---: |
+| 002 | João Ferreira Martins | 101 |
+| 003 | Pedro Cardoso de Melo | 102 |
+| 001 | Pedro Cardoso de Melo | 204 |
+| 025 | Fernando Gomes Silva | 403 |
+
+`Salas`
+| <u>Numero_Sala</u> | Capacidade_Sala |
+| :---: | :---: |
+| 101 | 50 |
+| 102 | 30 |
+| 204 | 25 |
+| 403 | 30 |
+
+## Referências
+Como fontes de estudos para esse estudo técnico foi utilizado o [ChatGPT](https://chatgpt.com/) (que segundo ele, gerou as informações com base em livros clássicos da área de banco de dados como "*Database System Concepts*" de Silberschatz, Korth e Sudarshan e "*Fundamentals of Database Systems*" de Elmasri e Navathe e materiais da internet) e [Anotações](https://github.com/josec-junior/UEPB/tree/main/BancoDeDadosI_2022.2/Anota%C3%A7%C3%B5es) próprias feitas a partir de materiais disponibilizados por professores da Universidade.
