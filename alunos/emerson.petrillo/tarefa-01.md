@@ -1,4 +1,3 @@
-git add .
 Emerson Soares Petrillo, 37 anos, São Paulo
 
 
