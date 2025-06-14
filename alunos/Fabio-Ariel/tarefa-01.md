@@ -24,8 +24,8 @@ Fontes Utilizadas + Linkedin:
 Outras fontes:
   - Chatgpt
   - Youtube:
-    -link1:https://www.youtube.com/watch?v=DudIYzThfPQ
-    -link2:https://www.youtube.com/watch?v=yQkp1Eze400
-    -link3:https://www.youtube.com/watch?v=Cj84bb04tio
+    - link1:https://www.youtube.com/watch?v=DudIYzThfPQ
+    - link2:https://www.youtube.com/watch?v=yQkp1Eze400
+    - link3:https://www.youtube.com/watch?v=Cj84bb04tio
 
 Linkedin:https://www.linkedin.com/in/fabio-ariel-vieira-bezerra-82965130b/
