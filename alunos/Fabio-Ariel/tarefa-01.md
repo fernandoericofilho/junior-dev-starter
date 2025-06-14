@@ -23,6 +23,7 @@ Fontes Utilizadas + Linkedin:
   - [Modelo Fisico.pdf](https://github.com/user-attachments/files/20735240/Modelo.Fisico.pdf)
 - Outras fontes:
   - Chatgpt
+    - https://www.notion.so/Jornada-Dev-JR-Fabio-Ariel-21238e00ca5880f487aef9482c4bdf36?source=copy_link
   - Youtube:
     - link1:https://www.youtube.com/watch?v=DudIYzThfPQ
     - link2:https://www.youtube.com/watch?v=yQkp1Eze400
