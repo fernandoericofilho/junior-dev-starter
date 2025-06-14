@@ -21,7 +21,7 @@ Fontes Utilizadas + Linkedin:
 - Materiais disponibilizados na faculdade:
   - [Modelo Logico.pdf](https://github.com/user-attachments/files/20735239/Modelo.Logico.pdf)
   - [Modelo Fisico.pdf](https://github.com/user-attachments/files/20735240/Modelo.Fisico.pdf)
-Outras fontes:
+- Outras fontes:
   - Chatgpt
   - Youtube:
     - link1:https://www.youtube.com/watch?v=DudIYzThfPQ
