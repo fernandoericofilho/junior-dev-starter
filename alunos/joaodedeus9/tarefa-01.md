@@ -46,3 +46,4 @@ Integridade dos dados: garantir que os dados sejam consistentes e corretos.
 
 Exemplos do dia a dia:
 Um banco de dados pode guardar os dados de clientes de um e-commerce, pode registrar as notas de alunos em uma escola, pode controlar o estoque de um supermercado e várias outras funções.
+Fonte: ChatGPT, Youtube(https://www.youtube.com/watch?v=Ofktsne-utM&list=PLHz_AreHm4dkBs-795Dsgvau_ekxg8g1r) e pesquisas avulsas.
