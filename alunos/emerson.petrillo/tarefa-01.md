@@ -10,7 +10,7 @@ Meu objetivo é atuar como Desenvolvedor de Software, utilizando minhas habilida
 Linkedin atualizado: https://www.linkedin.com/in/emersonpetrillo/
 
 
-Estudos de Git e Github: https://www.youtube.com/watch?v=ts-H3W1uLMM
+Estudos de Git and Github: https://www.youtube.com/watch?v=ts-H3W1uLMM
 
 
 Estudo técnico introdutório + resumo:
