@@ -7,6 +7,7 @@ Tenho como objetivo profissional atuar na área de desenvolvimento de software, 
 Um banco de dados é um sistema organizado que permite armazenar, gerenciar e recuperar informações de forma eficiente. Ele é amplamente utilizado em diversas aplicações — desde sites e aplicativos móveis até sistemas corporativos e governamentais.
 
 🔍 Tipos Principais de Banco de Dados
+
 🧩 1. Banco de Dados Relacional
 Utiliza tabelas (linhas e colunas) para estruturar os dados.
 Cada tabela pode se relacionar com outras.
@@ -17,6 +18,7 @@ MySQL
 PostgreSQL
 Oracle
 SQL Server
+
 🌐 2. Banco de Dados Não Relacional (NoSQL)
 Indicado para dados menos estruturados ou com mudanças frequentes.
 Dividido em categorias como:
