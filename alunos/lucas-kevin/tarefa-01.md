@@ -29,10 +29,10 @@ A normalização funciona em etapas chamadas de formas normais, que são regras 
 Antes (Tabela mal estruturada):
 
 | Pedido | Cliente | Produto | Preço Produto |
-| ------ | ------- | ------- | ------------- |
+| ------ |---------| ------- | ------------- |
 | 1      | Ana     | Caneta  | 2,00          |
 | 2      | João    | Caneta  | 2,00          |
-| 3      | Maria   | Lápis   | 1,50          |
+| 3      | Marcela | Lápis   | 1,50          |
 
 O preço do produto está sendo repetido em cada pedido. Se mudar, precisa alterar em vários lugares.
 
