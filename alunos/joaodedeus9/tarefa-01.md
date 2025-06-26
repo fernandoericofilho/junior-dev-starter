@@ -43,11 +43,13 @@ Consultas rápidas por meio de filtros e buscas
 Operações de inserção, atualização e exclusão de dados
 Controle de acesso, determinando quem pode ver ou modificar os dados
 Integridade dos dados, garantindo que as informações estejam corretas e consistentes
+
 📱 Exemplos Práticos no Dia a Dia
 Armazenamento de dados de clientes em um e-commerce
 Registro de notas e frequência escolar
 Controle de estoque de supermercados
 Cadastro de pacientes em sistemas hospitalares
+
 📚 Fontes
 ChatGPT
 Canal YouTube "Curso em Vídeo – Banco de Dados"
