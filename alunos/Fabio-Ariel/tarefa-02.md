@@ -111,4 +111,5 @@ O novo modelo relacional resolve todas as violações de normalização identifi
 3FN (Forma Normal 3): Todos os atributos não-chave dependem somente da chave primária da tabela, eliminando dependências transitivas.
 
 🖼️ 4. Modelo DER
+---
 ![image](https://github.com/user-attachments/assets/49325cc2-d337-4fab-b8b6-3b3f1b624203)
