@@ -7,3 +7,22 @@ Olá, me chamo Eros Franklin Soares Félix, mas a maioria das pessoas me chamam 
 ## GitHub
 
 Tenho noção do github já, tanto em cmd quanto no software GitDesktop. Com o tempo que utilizo o git, não foquei em estudar nada sobre, somente o gitlow que utilizei em projetos anteriores.
+
+## LinkedIn
+
+linkedin.com/in/eros-franklin-soares-felix-3429b033a
+
+## Banco de Dados
+
+ - O que estudei: 
+    - Banco de Dados Relacional, SGBD, Tabelas, Colunas, Linhas, Chave Primaria e Estrangeiras, Modelo ER, entidades, relacionamentos, atributos e formas normais.
+ - Fontes:
+    - Caderno de Anotações da faculdade, ChatGPT e Gemini.
+ - Resumo: 
+    - Um **banco de dados relacional** organiza os dados em tabelas interligadas por chaves primárias e estrangeiras, permitindo relacionamentos entre as informações. Cada tabela possui colunas (atributos) e linhas (registros reais). O **SGBD** (Sistema Gerenciador de Banco de Dados) é o software que gerencia essas tabelas e suas operações, como o MySQL ou PostgreSQL. Antes de criar o banco, é comum fazer a **modelagem relacional** usando o diagrama entidade-relacionamento (ER), que representa graficamente as entidades (ex: Cliente, Pedido), seus atributos e os tipos de relacionamento entre elas (1:1, 1\:N, N\:N).
+
+    - A **normalização** é uma técnica usada para organizar os dados e evitar redundâncias. As **formas normais** (1FN, 2FN, 3FN...) são etapas que garantem que a estrutura do banco esteja consistente e bem distribuída. A normalização melhora a integridade dos dados, reduz o uso desnecessário de espaço e facilita manutenções futuras. Por exemplo, imagine uma tabela de clientes com uma coluna `telefones` que armazena vários números em uma mesma célula — isso dificulta buscas e atualizações. Ao aplicar a 1ª Forma Normal, essa informação é separada em várias linhas, com um número por linha, tornando a tabela mais funcional e organizada.
+
+
+
+
