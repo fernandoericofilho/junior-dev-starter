@@ -3,3 +3,7 @@
 ## Aprensentacao Pessoal
 
 Olá, me chamo Eros Franklin Soares Félix, mas a maioria das pessoas me chamam pelo primeiro nome, nasci em Patos-PB, mas morei minha vida inteira no(a) cidade/município de Catingueira-PB. Atualmente, curso o sétimo período de Ciência da Computação na Universidade Estadual da Paraíba - Campus VII (Patos). Meu objetivo é me tornar um desenvolvedor full-stack, já que tenho grande conhecimento na área front-end, mas quero também usar a área backend, pois já atuei nas duas áreas em diversos projetos durante a minha formação acadêmica, e com isso, ingressar no mercado de trabalho e evoluir cada vez mais como um bom profissional de programação. Tenho conhecimentos em tecnologias frontend - HTML, CSS, JavaScript, React.. - no backend - Python, C, C++, Java, Node.js, Express.js - e um pouco em modelagem de banco de Dados - MongoDB e MySql. Sempre tive a curiosidade em como as coisas funcionava, como um botão funcionava daquela maneira, como que usuários eram cadastrados em um banco... enfim, também sempre gostei de resolver problemas lógicos, ou " se eu tivesse feito aquilo e não isso, o que aconteceria:", acho que à área de TI me faz ter essa sensação, quando tenho problemas pra resolver.
+
+## GitHub
+
+Tenho noção do github já, tanto em cmd quanto no software GitDesktop. Com o tempo que utilizo o git, não foquei em estudar nada sobre, somente o gitlow que utilizei em projetos anteriores.
