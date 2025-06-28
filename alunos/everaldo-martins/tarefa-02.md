@@ -150,4 +150,4 @@ O DER foi gerado no DBeaver, mostrando as tabelas `clientes`, `fornecedores`, `p
 
 ## Imagem do Diagrama Entidade-Relacionamento (DER)
 
-![DER](./img/DER.png)
+![DER](./img/DER-Loja.png)
