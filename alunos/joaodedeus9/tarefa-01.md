@@ -1,49 +1,58 @@
-*APRESENTÇÃO PESSOAL*
+📌 Apresentação Pessoal
+Olá! Meu nome é João de Deus Silva Pereira, tenho 19 anos e atualmente moro na cidade de Santa Luzia – PB. Estou cursando Análise e Desenvolvimento de Sistemas na UNIFIP, campus Patos – PB.
 
-Olá! Meu nome é João de Deus Silva Pereira, tenho 19 anos, atualmente moro na cidade de Santa Luzia PB e atualmente estou cursando análise e desenvolvimento de sistemas na UNIFIP campos Patos PB.Tenho como objetivo profissional atuar na área de desenvolvimento de software, contribuindo com soluções inovadoras, acessíveis e eficientes.Acredito que a tecnologia tem um papel fundamental na transformação digital das empresas e na melhoria da sociedade como um todo.
+Tenho como objetivo profissional atuar na área de desenvolvimento de software, contribuindo com soluções inovadoras, acessíveis e eficientes. Acredito que a tecnologia exerce um papel fundamental na transformação digital das empresas e na melhoria da sociedade como um todo.
 
-*RESUMO INFORMATIVO SOBRE BANCO DE DADOS*
+🗃️ Resumo Técnico sobre Banco de Dados
+Um banco de dados é um sistema organizado que permite armazenar, gerenciar e recuperar informações de forma eficiente. Ele é amplamente utilizado em diversas aplicações — desde sites e aplicativos móveis até sistemas corporativos e governamentais.
 
-Banco de dados é um sistema organizado para armazenar, gerenciar e recuperar informações de forma eficiente. Ele é muito usado em aplicações de todos os tipos — desde sites, aplicativos de celular até sistemas corporativos e governamentais.
+🔍 Tipos Principais de Banco de Dados
 
-Tipos principais de banco de dados:
-Relacional:
-
-Usa tabelas (linhas e colunas) para organizar os dados.
-
+🧩 1. Banco de Dados Relacional
+Utiliza tabelas (linhas e colunas) para estruturar os dados.
 Cada tabela pode se relacionar com outras.
+Usa a linguagem SQL (Structured Query Language) para realizar consultas e manipulação de dados.
+Exemplos:
 
-Exemplos: MySQL, PostgreSQL, Oracle, SQL Server.
+MySQL
+PostgreSQL
+Oracle
+SQL Server
 
-Usa uma linguagem chamada SQL (Structured Query Language) para consultas e manipulação de dados.
+🌐 2. Banco de Dados Não Relacional (NoSQL)
+Indicado para dados menos estruturados ou com mudanças frequentes.
+Dividido em categorias como:
+Chave-valor
+Documentos
+Grafos
+Colunar
+Exemplos:
+MongoDB (documento):
+Banco de dados NoSQL open-source, ideal para grandes volumes de dados com estrutura flexível.
 
-Não-relacional (NoSQL):
+Redis (chave-valor):
+Banco em memória, extremamente rápido. Usado como cache, armazenamento temporário ou fila de mensagens.
 
-Ideal para dados menos estruturados ou que mudam com frequência.
+Neo4j (grafo):
+Especializado em armazenar e consultar relacionamentos complexos entre dados.
 
-Existem vários tipos: chave-valor, documentos, grafos, colunar.
+Apache Cassandra (colunar):
+Banco de dados distribuído e escalável. Ideal para aplicações que exigem alta disponibilidade, mesmo com falhas em parte da infraestrutura.
 
-Exemplos: MongoDB (documento), Redis (chave-valor), Neo4j (grafo), Cassandra (colunar).
+⚙️ Principais Funções de um Banco de Dados
+Armazenamento seguro e persistente das informações
+Consultas rápidas por meio de filtros e buscas
+Operações de inserção, atualização e exclusão de dados
+Controle de acesso, determinando quem pode ver ou modificar os dados
+Integridade dos dados, garantindo que as informações estejam corretas e consistentes
 
-O MongoDB é um banco de dados NoSQL (não relacional) de código aberto, muito usado para armazenar grandes volumes de dados de forma flexível e escalável.
+📱 Exemplos Práticos no Dia a Dia
+Armazenamento de dados de clientes em um e-commerce
+Registro de notas e frequência escolar
+Controle de estoque de supermercados
+Cadastro de pacientes em sistemas hospitalares
 
-O Redis é um banco de dados NoSQL em memória, de código aberto, projetado para ser extremamente rápido. Ele é usado principalmente como cache, armazenamento temporário de dados, ou até mesmo como fila de mensagens.
-
-O Neo4j é um banco de dados orientado a grafos, projetado para armazenar e consultar relacionamentos complexos entre dados de forma extremamente eficiente.
-
-O Apache Cassandra é um banco de dados NoSQL distribuído e altamente escalável, ideal para lidar com grandes volumes de dados que precisam ser armazenados de forma distribuída e com alta disponibilidade — mesmo que parte da infraestrutura falhe.
-
-Principais funções de um banco de dados:
-Armazenamento seguro e persistente dos dados.
-
-Consulta rápida por meio de buscas ou filtros.
-
-Atualização, inserção e exclusão de dados.
-
-Controle de acesso: quem pode ver ou alterar o quê.
-
-Integridade dos dados: garantir que os dados sejam consistentes e corretos.
-
-Exemplos do dia a dia:
-Um banco de dados pode guardar os dados de clientes de um e-commerce, pode registrar as notas de alunos em uma escola, pode controlar o estoque de um supermercado e várias outras funções.
-Fonte: ChatGPT, Youtube(https://www.youtube.com/watch?v=Ofktsne-utM&list=PLHz_AreHm4dkBs-795Dsgvau_ekxg8g1r) e pesquisas avulsas.
+📚 Fontes
+ChatGPT
+Canal YouTube "Curso em Vídeo – Banco de Dados"
+Pesquisas avulsas
