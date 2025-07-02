@@ -1,3 +1,6 @@
+
+Meu nome é Fabio Ariel Vieira Bezerra, tenho 19 anos e moro em Santa Luzia - PB. Sou técnico de informática pela ECIT e atualmente estou cursando o 3º período de Análise e Desenvolvimento de Sistemas na UNIFIP, campus Patos - PB. Tenho grande interesse pela área de tecnologia e estou sempre em busca de novos conhecimentos que contribuam para meu desenvolvimento profissional. Além disso, busco constantemente me especializar nas habilidades que já possuo e fortalecer minha capacidade de inovação dentro do campo tecnológico.
+
 # Descrição Técnica – Fabio Ariel Vieira Bezerra
 
 ## 👨‍💻 Sobre Mim
@@ -61,3 +64,4 @@ A **normalização** é uma técnica que organiza os dados de forma a **evitar r
 ## 💼 LinkedIn
 
 [Fabio Ariel Vieira Bezerra](https://www.linkedin.com/in/fabio-ariel-vieira-bezerra-82965130b/)
+
