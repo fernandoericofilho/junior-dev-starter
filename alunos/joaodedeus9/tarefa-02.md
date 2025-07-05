@@ -13,133 +13,71 @@ fornecedor_telefone depende de fornecedor_nome, não do pedido.
 
 produto_preco depende de produto_nome, e não diretamente do pedido.
 
-Modelo Corrigido
-
+-- Tabela de clientes
 CREATE TABLE clientes (
-  cliente_id SERIAL PRIMARY KEY,
-  nome VARCHAR(100) NOT NULL
+    cliente_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    telefone VARCHAR(20)
 );
 
-CREATE TABLE telefones_cliente (
-  telefone_id SERIAL PRIMARY KEY,
-  cliente_id INT NOT NULL REFERENCES clientes(cliente_id),
-  telefone VARCHAR(20) NOT NULL
-);
-
-CREATE TABLE enderecos_cliente (
-  endereco_id SERIAL PRIMARY KEY,
-  cliente_id INT NOT NULL REFERENCES clientes(cliente_id),
-  logradouro VARCHAR(100),
-  numero VARCHAR(10),
-  complemento VARCHAR(50),
-  bairro VARCHAR(50),
-  cidade VARCHAR(50),
-  estado VARCHAR(2),
-  cep VARCHAR(10)
-);
-
-Tabelas de Fornecedores
-
+-- Tabela de fornecedores
 CREATE TABLE fornecedores (
-  fornecedor_id SERIAL PRIMARY KEY,
-  nome VARCHAR(100) NOT NULL
+    fornecedor_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    telefone VARCHAR(20)
 );
 
-CREATE TABLE telefones_fornecedor (
-  telefone_id SERIAL PRIMARY KEY,
-  fornecedor_id INT NOT NULL REFERENCES fornecedores(fornecedor_id),
-  telefone VARCHAR(20) NOT NULL
-);
-
-CREATE TABLE enderecos_fornecedor (
-  endereco_id SERIAL PRIMARY KEY,
-  fornecedor_id INT NOT NULL REFERENCES fornecedores(fornecedor_id),
-  logradouro VARCHAR(100),
-  numero VARCHAR(10),
-  complemento VARCHAR(50),
-  bairro VARCHAR(50),
-  cidade VARCHAR(50),
-  estado VARCHAR(2),
-  cep VARCHAR(10)
-);
-
-
-Produtos
-
+-- Tabela de produtos
 CREATE TABLE produtos (
-  produto_id SERIAL PRIMARY KEY,
-  nome VARCHAR(100) NOT NULL,
-  preco NUMERIC(10,2) NOT NULL,
-  fornecedor_id INT NOT NULL REFERENCES fornecedores(fornecedor_id),
-  data_cadastro DATE DEFAULT CURRENT_DATE,
-  data_atualizacao DATE,
-  data_validade DATE
+    produto_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    preco NUMERIC(10,2),
+    fornecedor_id INT REFERENCES fornecedores(fornecedor_id)
 );
 
-Pedidos
-
+-- Tabela de pedidos
 CREATE TABLE pedidos (
-  pedido_id SERIAL PRIMARY KEY,
-  cliente_id INT NOT NULL REFERENCES clientes(cliente_id),
-  endereco_entrega_id INT REFERENCES enderecos_cliente(endereco_id)
+    pedido_id SERIAL PRIMARY KEY,
+    cliente_id INT REFERENCES clientes(cliente_id),
+    endereco_entrega VARCHAR(200)
 );
 
- Itens do Pedido
-
+-- Tabela de itens do pedido
 CREATE TABLE itens_pedido (
-  item_id SERIAL PRIMARY KEY,
-  pedido_id INT NOT NULL REFERENCES pedidos(pedido_id),
-  produto_id INT NOT NULL REFERENCES produtos(produto_id),
-  quantidade INT NOT NULL,
-  preco_unitario NUMERIC(10,2) NOT NULL,
-  data_venda DATE DEFAULT CURRENT_DATE
+    item_id SERIAL PRIMARY KEY,
+    pedido_id INT REFERENCES pedidos(pedido_id),
+    produto_id INT REFERENCES produtos(produto_id),
+    quantidade INT
 );
 
- Inserção de Dados
+-- Inserção de dados
 
 -- Clientes
-INSERT INTO clientes (nome) VALUES ('Ana Silva'), ('Bruno Costa');
-
--- Telefones dos Clientes
-INSERT INTO telefones_cliente (cliente_id, telefone) VALUES
-(1, '9999-0000'),
-(1, '9888-1111'),
-(2, '8888-1111');
-
--- Endereços dos Clientes
-INSERT INTO enderecos_cliente (cliente_id, logradouro, numero, cidade, estado, cep) VALUES
-(1, 'Rua A', '123', 'São Paulo', 'SP', '01000-000'),
-(2, 'Rua B', '456', 'Rio de Janeiro', 'RJ', '20000-000');
+INSERT INTO clientes (nome, telefone) VALUES
+('Ana Silva', '9999-0000'),
+('Bruno Costa', '8888-1111');
 
 -- Fornecedores
-INSERT INTO fornecedores (nome) VALUES ('Fornecedor A'), ('Fornecedor B');
-
--- Telefones dos Fornecedores
-INSERT INTO telefones_fornecedor (fornecedor_id, telefone) VALUES
-(1, '1111-2222'),
-(2, '3333-4444');
-
--- Endereços dos Fornecedores
-INSERT INTO enderecos_fornecedor (fornecedor_id, logradouro, numero, cidade, estado, cep) VALUES
-(1, 'Av Central', '1000', 'São Paulo', 'SP', '01111-111'),
-(2, 'Rua das Flores', '200', 'Belo Horizonte', 'MG', '30100-000');
+INSERT INTO fornecedores (nome, telefone) VALUES
+('Fornecedor A', '1111-2222'),
+('Fornecedor B', '3333-4444');
 
 -- Produtos
-INSERT INTO produtos (nome, preco, fornecedor_id, data_cadastro, data_validade) VALUES
-('Teclado', 150.00, 1, CURRENT_DATE, '2026-12-31'),
-('Mouse', 80.00, 2, CURRENT_DATE, '2026-06-30'),
-('Monitor', 700.00, 1, CURRENT_DATE, '2027-01-01');
+INSERT INTO produtos (nome, preco, fornecedor_id) VALUES
+('Teclado', 150.00, 1),
+('Mouse', 80.00, 2),
+('Monitor', 700.00, 1);
 
 -- Pedidos
-INSERT INTO pedidos (cliente_id, endereco_entrega_id) VALUES
-(1, 1),
-(2, 2);
+INSERT INTO pedidos (cliente_id, endereco_entrega) VALUES
+(1, 'Rua A, 123'),
+(2, 'Rua B, 456');
 
--- Itens do Pedido
-INSERT INTO itens_pedido (pedido_id, produto_id, quantidade, preco_unitario) VALUES
-(1, 1, 2, 150.00),
-(1, 2, 1, 80.00),
-(2, 3, 1, 700.00);
+-- Itens dos pedidos
+INSERT INTO itens_pedido (pedido_id, produto_id, quantidade) VALUES
+(1, 1, 2), -- Teclado
+(1, 2, 1), -- Mouse
+(2, 3, 1); -- Monitor
 
 	📌Modelo DER
 
