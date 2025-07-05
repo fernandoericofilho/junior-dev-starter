@@ -13,9 +13,9 @@ fornecedor_telefone depende de fornecedor_nome, não do pedido.
 
 produto_preco depende de produto_nome, e não diretamente do pedido.
 
-Modelo Corrigido
+📁 MODELO CORRIGIDO
 
-CREATE TABLE clientes (
+```sqlCREATE TABLE clientes (
   cliente_id SERIAL PRIMARY KEY,
   nome VARCHAR(100) NOT NULL
 );
@@ -139,7 +139,7 @@ INSERT INTO pedidos (cliente_id, endereco_entrega_id) VALUES
 INSERT INTO itens_pedido (pedido_id, produto_id, quantidade, preco_unitario) VALUES
 (1, 1, 2, 150.00),
 (1, 2, 1, 80.00),
-(2, 3, 1, 700.00);
+(2, 3, 1, 700.00);```
 
 	📌Modelo DER
 
