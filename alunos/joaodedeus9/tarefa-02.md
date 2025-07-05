@@ -139,8 +139,9 @@ INSERT INTO pedidos (cliente_id, endereco_entrega_id) VALUES
 INSERT INTO itens_pedido (pedido_id, produto_id, quantidade, preco_unitario) VALUES
 (1, 1, 2, 150.00),
 (1, 2, 1, 80.00),
-(2, 3, 1, 700.00);```
+(2, 3, 1, 700.00);
 
+```
 	📌Modelo DER
 
 ![Captura de tela 2025-07-04 184233](https://github.com/user-attachments/assets/4dcec4fd-4e43-41da-9e23-8aa91fdb66af)
