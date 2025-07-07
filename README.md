@@ -29,7 +29,17 @@ Nesta etapa, vamos aprofundar o entendimento sobre bancos de dados relacionais, 
 
 ---
 
-📄 [Documentação](documentos/002_TAREFA_BANCO_DE_DADOS.md)  
 📄 [Acesse a tarefa aqui](tarefas/002_TAREFA_BANCO_DE_DADOS.md)
+
+---
+
+## 3. Tarefa 03 - Comandos GIT e GitFlow
+
+Nesta etapa, vamos aprofundar o conhecimento sobre comandos do git e funcionamento do gitflow.
+
+---
+
+📄 [Documentação](documentos/002_GIT_FLOW.MD)  
+📄 [Acesse a tarefa aqui](tarefas/003_TAREFA_GITFLOW.md)
 
 ---
