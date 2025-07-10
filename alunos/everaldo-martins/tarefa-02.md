@@ -15,7 +15,7 @@ A **1FN** exige que:
 
 **Problemas identificados**:
 
-- A tabela `pedidos` armazena informações de clientes, produtos e fornecedores em uma única tabela, mas não há listas ou valores não atômicos (como múltiplos telefones em uma célula). Dessa forma, não existe violação explícita da 1FN nesse caso, já que cada coluna contém um único valor atômico.
+- A tabela `pedidos` armazena informações de `clientes`, `produtos` e `fornecedores` em uma única tabela, gerando repetição de dados.
 
 2. **Violação da 2ª Forma Normal (2FN)**
 
@@ -45,109 +45,264 @@ A **3FN** exige que:
 
 - Há uma dependência transitiva:
     - `produto_preco` depende de `produto_nome`, que não é a chave primária. O preço do produto é uma característica do produto, não do pedido especificamente.
-    - `endereco_entrega` está relacionado ao cliente, por exemplo (Ana Silva tem o mesmo endereço em dois pedidos), mas está sendo armazenado redundantemente na tabela pedidos.
+    - `endereco_entrega` está relacionado ao cliente, por exemplo (Ana Silva tem o mesmo endereço em dois pedidos), mas está sendo armazenado redundantemente na tabela pedidos e se repete em cada pedido do mesmo `cliente`, o que é uma dependência transitiva.
 
 - Isso causa redundância de dados e potenciais anomalias,  (Por exemplo caso o preço de um produto mude, será necessário atualizar várias linhas).
 
 ## Resolução dos problemas do modelo inicial
 
-Para resolver as violações, serão criar tabelas separadas para cada entidade (`clientes`, `fornecedores`, `produtos`, `pedidos` e `itens_pedido`) e usar chaves primárias e estrangeiras para manter a integridade referencial, normalizado até a **3FN**.
+Para resolver as violações do modelo inicial, foram criadas tabelas separadas para cada entidade, normalizadas até a **3FN**, com as seguintes correções estruturais:
+
+1. **Separação de tabelas multivaloradas** (endereços e telefones)
+
+2. **Especificação de relacionamentos** através de chaves estrangeiras
+
+3. **Adição de constraints** para garantir integridade dos dados.
+
 
 **Lista de Tabelas**:
 
-- **clientes**: Armazena informações dos clientes.
-- **fornecedores**: Armazena informações dos fornecedores.
-- **produtos**: Armazena informações dos produtos.
-- **pedidos**: Armazena informações básicas do pedido (ex.: cliente, endereço).
-- **itens_pedido**: Relaciona pedidos a produtos (permite múltiplos produtos por pedido).
+- **clientes**: Armazena informações básicas dos clientes (sem dados multivalorados)
+
+- **fornecedores**: Armazena informações básicas dos fornecedores (sem dados multivalorados)
+
+- **clientes_enderecos**: Armazena exclusivamente endereços dos clientes (separado da tabela original)
+
+- **fornecedores_enderecos**: Armazena exclusivamente endereços dos fornecedores (separado da tabela original)
+
+- **clientes_telefones**: Armazena exclusivamente telefones dos clientes (separado da tabela original)
+
+- **fornecedores_telefones**: Armazena exclusivamente telefones dos fornecedores (separado da tabela original)
+
+- **produtos**: Armazena informações completas dos produtos, incluindo relacionamento com fornecedores
+
+- **pedidos**: Armazena informações básicas do pedido com relacionamentos para cliente e endereço de entrega
+
+- **itens_pedido**: Relaciona pedidos a produtos com histórico de preços e quantidades
+
+**Melhorias implementadas**
+
+1. **Separação clara** entre tabelas de clientes e fornecedores
+
+2. **Eliminação de ambiguidade** nos relacionamentos
+
+3. **Especificação precisa** dos tipos de endereços e telefones
+
+4. **Adição de constraints** para validar dados (CEP, telefone, UF)
+
+5. **Histórico de preços** nos itens de pedido
+
+6. **Controle de status** nos pedidos
 
 **Estrutura SQL das tabelas**
 
 ```sql
+-- Criação do banco de dados
+CREATE DATABASE loja;
+
+-- Use o banco criado
+\c loja;
+
 -- Tabela clientes
 CREATE TABLE clientes (
     cliente_id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-    telefone VARCHAR(20),
-    endereco VARCHAR(200)
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ativo BOOLEAN DEFAULT TRUE
 );
 
 -- Tabela fornecedores
 CREATE TABLE fornecedores (
     fornecedor_id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-    telefone VARCHAR(20)
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ativo BOOLEAN DEFAULT TRUE
 );
 
--- Tabela produtos
+-- Tabela de endereços dos clientes
+CREATE TABLE clientes_enderecos (
+    endereco_id SERIAL PRIMARY KEY,
+    cliente_id INT REFERENCES clientes(cliente_id) ON DELETE CASCADE,
+    logradouro VARCHAR(100) NOT NULL,
+    numero VARCHAR(20) NOT NULL,
+    complemento VARCHAR(50),
+    bairro VARCHAR(50) NOT NULL,
+    cidade VARCHAR(50) NOT NULL,
+    estado CHAR(2) NOT NULL CHECK (estado IN ('AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO')),
+    cep CHAR(8) NOT NULL CHECK (cep ~ '^[0-9]{8}$'),
+    tipo_endereco VARCHAR(30) NOT NULL CHECK (tipo_endereco IN ('residencial', 'comercial', 'entrega', 'outro'))
+);
+
+-- Tabela de endereços dos fornecedores
+CREATE TABLE fornecedores_enderecos (
+    endereco_id SERIAL PRIMARY KEY,
+    fornecedor_id INT REFERENCES fornecedores(fornecedor_id) ON DELETE CASCADE,
+    logradouro VARCHAR(100) NOT NULL,
+    numero VARCHAR(20) NOT NULL,
+    complemento VARCHAR(50),
+    bairro VARCHAR(50) NOT NULL,
+    cidade VARCHAR(50) NOT NULL,
+    estado CHAR(2) NOT NULL CHECK (estado IN ('AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO')),
+    cep CHAR(8) NOT NULL CHECK (cep ~ '^[0-9]{8}$'),
+    tipo_endereco VARCHAR(30) NOT NULL CHECK (tipo_endereco IN ('matriz', 'filial', 'entrega', 'outro'))
+);
+
+-- Tabela de telefones dos clientes
+CREATE TABLE clientes_telefones (
+    telefone_id SERIAL PRIMARY KEY,
+    cliente_id INT REFERENCES clientes(cliente_id) ON DELETE CASCADE,
+    numero VARCHAR(15) NOT NULL CHECK (numero ~ '^[0-9]{10,11}$'),
+    tipo VARCHAR(30) NOT NULL CHECK (tipo IN ('celular', 'fixo', 'whatsapp', 'comercial')),
+    principal BOOLEAN DEFAULT FALSE,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela de telefones dos fornecedores
+CREATE TABLE fornecedores_telefones (
+    telefone_id SERIAL PRIMARY KEY,
+    fornecedor_id INT REFERENCES fornecedores(fornecedor_id) ON DELETE CASCADE,
+    numero VARCHAR(15) NOT NULL CHECK (numero ~ '^[0-9]{10,11}$'),
+    tipo VARCHAR(30) NOT NULL CHECK (tipo IN ('celular', 'fixo', 'whatsapp', 'comercial')),
+    ramal VARCHAR(10),
+    principal BOOLEAN DEFAULT FALSE,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela de produtos
 CREATE TABLE produtos (
     produto_id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-    preco NUMERIC(10,2) NOT NULL,
-    fornecedor_id INT REFERENCES fornecedores(fornecedor_id)
+    codigo_barra VARCHAR(13) UNIQUE,
+    descricao TEXT,
+    preco_compra NUMERIC(10,2) CHECK (preco_compra >= 0),
+    preco_venda NUMERIC(10,2) NOT NULL CHECK (preco_venda > 0),
+    fornecedor_id INT REFERENCES fornecedores(fornecedor_id) ON DELETE SET NULL,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_validade DATE,
+    ativo BOOLEAN DEFAULT TRUE
 );
 
 -- Tabela pedidos
 CREATE TABLE pedidos (
     pedido_id SERIAL PRIMARY KEY,
-    cliente_id INT REFERENCES clientes(cliente_id),
-    endereco_entrega VARCHAR(200)
+    cliente_id INT NOT NULL REFERENCES clientes(cliente_id) ON DELETE RESTRICT,
+    endereco_entrega_id INT REFERENCES clientes_enderecos(endereco_id) ON DELETE SET NULL,
+    data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_entrega TIMESTAMP,
+    status VARCHAR(30) DEFAULT 'pendente' CHECK (status IN ('pendente', 'processando', 'enviado', 'entregue', 'cancelado'))
 );
 
--- Tabela itens_pedido
+-- Tabela itens dos pedidos
 CREATE TABLE itens_pedido (
-    pedido_id INT REFERENCES pedidos(pedido_id),
-    produto_id INT REFERENCES produtos(produto_id),
-    quantidade INT NOT NULL,
-    PRIMARY KEY (pedido_id, produto_id)
+    item_id SERIAL PRIMARY KEY,
+    pedido_id INT NOT NULL REFERENCES pedidos(pedido_id) ON DELETE CASCADE,
+    produto_id INT NOT NULL REFERENCES produtos(produto_id) ON DELETE RESTRICT,
+    quantidade INT NOT NULL CHECK (quantidade > 0),
+    preco_custo NUMERIC(10,2) CHECK (preco_custo >= 0),
+    preco_venda NUMERIC(10,2) NOT NULL CHECK (preco_venda > 0),
+    desconto NUMERIC(10,2) DEFAULT 0 CHECK (desconto >= 0),
+    data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (pedido_id, produto_id)
 );
+
+-- View exemplo que calcula automaticamente o valor total de cada pedido
+CREATE OR REPLACE VIEW pedidos_com_valor_total AS
+SELECT 
+    p.pedido_id,
+    p.cliente_id,
+    p.endereco_entrega_id,
+    p.data_pedido,
+    p.data_entrega,
+    p.status,
+    COALESCE(SUM(ip.quantidade * (ip.preco_venda - ip.desconto)), 0) AS valor_total
+FROM pedidos p
+LEFT JOIN itens_pedido ip ON ip.pedido_id = p.pedido_id
+GROUP BY p.pedido_id;
 ```
 
 **Inseções exemplos nas tabelas**
 
 ```sql
--- Inserir dados em clientes
-INSERT INTO clientes (nome, telefone, endereco) VALUES
-('Ana Silva', '9999-0000', 'Rua A, 123'),
-('Bruno Costa', '8888-1111', 'Rua B, 456');
+-- Inserir clientes
+INSERT INTO clientes (nome) VALUES
+('João Silva'),
+('Maria Oliveira'),
+('Carlos Souza'),
+('Ana Santos');
 
--- Inserir dados em fornecedores
-INSERT INTO fornecedores (nome, telefone) VALUES
-('Fornecedor A', '1111-2222'),
-('Fornecedor B', '3333-4444');
+-- Inserir fornecedores
+INSERT INTO fornecedores (nome) VALUES
+('TechFornecedor Ltda'),
+('EletroDistribuidora SA'),
+('Componentes & Cia');
 
--- Inserir dados em produtos
-INSERT INTO produtos (nome, preco, fornecedor_id) VALUES
-('Teclado', 150.00, 1),
-('Mouse', 80.00, 2),
-('Monitor', 700.00, 1);
+-- Inserir endereços de clientes
+INSERT INTO clientes_enderecos (cliente_id, logradouro, numero, complemento, bairro, cidade, estado, cep, tipo_endereco) VALUES
+(1, 'Rua das Flores', '123', 'Apto 101', 'Centro', 'São Paulo', 'SP', '01001000', 'residencial'),
+(1, 'Avenida Paulista', '1000', '', 'Bela Vista', 'São Paulo', 'SP', '01310000', 'comercial'),
+(2, 'Rua das Palmeiras', '45', '', 'Jardins', 'Rio de Janeiro', 'RJ', '22460000', 'residencial'),
+(3, 'Avenida Brasil', '2000', 'Sala 305', 'Centro', 'Belo Horizonte', 'MG', '30140000', 'comercial'),
+(4, 'Rua dos Pinheiros', '789', '', 'Pinheiros', 'São Paulo', 'SP', '05422000', 'residencial');
 
--- Inserir dados em pedidos
-INSERT INTO pedidos (cliente_id, endereco_entrega) VALUES
-(1, 'Rua A, 123'),
-(1, 'Rua A, 123'),
-(2, 'Rua B, 456');
+-- Inserir endereços de fornecedores
+INSERT INTO fornecedores_enderecos (fornecedor_id, logradouro, numero, complemento, bairro, cidade, estado, cep, tipo_endereco) VALUES
+(1, 'Rua da Tecnologia', '500', 'Bloco B', 'Industrial', 'Campinas', 'SP', '13035000', 'matriz'),
+(2, 'Avenida das Máquinas', '2500', '', 'Centro', 'São Paulo', 'SP', '01005000', 'filial'),
+(3, 'Rua dos Componentes', '33', 'Galpão 5', 'Industrial', 'Curitiba', 'PR', '81200000', 'matriz');
 
--- Inserir dados em itens_pedido
-INSERT INTO itens_pedido (pedido_id, produto_id, quantidade) VALUES
-(1, 1, 2),
-(2, 2, 1),
-(3, 3, 1);
+-- Inserir telefones de clientes
+INSERT INTO clientes_telefones (cliente_id, numero, tipo, principal) VALUES
+(1, '11999999999', 'celular', TRUE),
+(1, '1133333333', 'fixo', FALSE),
+(2, '21988888888', 'celular', TRUE),
+(3, '31977777777', 'celular', TRUE),
+(4, '11966666666', 'celular', TRUE);
+
+-- Inserir telefones de fornecedores
+INSERT INTO fornecedores_telefones (fornecedor_id, numero, tipo, ramal, principal) VALUES
+(1, '1933334444', 'fixo', '202', TRUE),
+(1, '1999998888', 'comercial', NULL, FALSE),
+(2, '1133332222', 'fixo', NULL, TRUE),
+(3, '4133335555', 'fixo', '101', TRUE);
+
+-- Inserir produtos
+INSERT INTO produtos (nome, codigo_barra, descricao, preco_compra, preco_venda, fornecedor_id, data_validade) VALUES
+('Notebook Elite', '7891234567890', 'Notebook 15" i7 16GB RAM', 2500.00, 3999.99, 1, NULL),
+('Mouse Sem Fio', '7899876543210', 'Mouse óptico 1600DPI', 45.00, 89.90, 2, NULL),
+('Teclado Mecânico', '7894561237890', 'Teclado RGB switches azuis', 120.00, 249.90, 1, NULL),
+('Monitor 24"', '7893216549870', 'Monitor Full HD IPS', 600.00, 999.00, 3, NULL),
+('Webcam HD', '7896549873210', 'Webcam 1080p com microfone', 80.00, 149.90, 2, NULL);
+
+-- Inserir pedidos
+INSERT INTO pedidos (cliente_id, endereco_entrega_id, data_pedido, status) VALUES
+(1, 1, '2023-05-10 09:15:00', 'entregue'),
+(2, 3, '2023-05-12 14:30:00', 'enviado'),
+(3, 4, '2023-05-15 11:00:00', 'processando'),
+(1, 2, '2023-05-18 16:45:00', 'pendente');
+
+-- Inserir itens de pedido
+INSERT INTO itens_pedido (pedido_id, produto_id, quantidade, preco_custo, preco_venda, desconto) VALUES
+(1, 1, 1, 2500.00, 3999.99, 0),
+(1, 3, 1, 120.00, 249.90, 10.00),
+(2, 2, 2, 45.00, 89.90, 0),
+(2, 5, 1, 80.00, 149.90, 5.00),
+(3, 4, 1, 600.00, 999.00, 0),
+(4, 1, 1, 2500.00, 3999.99, 200.00),
+(4, 2, 1, 45.00, 89.90, 0);
 ```
-## Explicação da resolução das violações
+### Explicação da resolução das violações
 
-As violações das forma normais foram resolvidas da seguinte forma:
+As violações das formas normais foram corrigidas por meio da normalização até a **3FN**, da seguinte forma:
 
-- **2FN**: Atributos de clientes e fornecedores foram movidos para as tabelas `clientes` e `fornecedores`, eliminando dependências parciais. Agora, cada atributo não-chave depende completamente da chave primária de sua tabela.
+- **1ª Forma Normal (1FN)**: 
+  - Todos os atributos foram tornados atômicos.
+  - A tabela `pedidos` que armazenava informações de cliente, produto e fornecedor em uma única tabela, foi separada.
+  - Informações compostas ou repetidas, como cliente com múltiplos telefones ou endereços, foram movidas para tabelas separadas (`clientes_telefones`, `clientes_enderecos`).  - A tabela `pedidos` que armazenava informações de cliente, produto e fornecedor em uma única tabela, foi separada.
 
-- **3FN**: O atributo `produto_preco` foi movido para a tabela `produtos`, eliminando a dependência transitiva com `produto_nome`. O endereço foi mantido em `clientes` como informação padrão, mas `endereco_entrega` em `pedidos` permitindo flexibilidade.
+- **2ª Forma Normal (2FN)**: 
+  - Atributos que não dependiam diretamente da chave primária `pedido_id`, como dados de cliente e fornecedor, foram movidos para tabelas específicas (`clientes`, `fornecedores`), eliminando dependências parciais.
 
-- A tabela `itens_pedido` resolve a questão de múltiplos produtos por pedido, mantendo a integridade referencial com chaves estrangeiras.
-
-## Diagrama Entidade-Relacionamento (DER)
-
-O DER foi gerado no DBeaver, mostrando as tabelas `clientes`, `fornecedores`, `produtos`, `pedidos` e `itens_pedido`, com suas chaves primárias e estrangeiras. 
-
-## Imagem do Diagrama Entidade-Relacionamento (DER)
-
-![DER](./img/DER-Loja.png)
+- **3ª Forma Normal (3FN)**: 
+  - Eliminaram-se dependências transitivas, como `produto_preco` dependendo de `produto_nome`, com a criação da tabela `produtos`.
+  - O campo `endereco_entrega` foi referenciado através de chave estrangeira na tabela `clientes_enderecos`, evitando duplicidade de dados e mantendo a flexibilidade.
