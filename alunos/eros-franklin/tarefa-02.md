@@ -2,7 +2,7 @@
 
 ## 1ª Forma Normal (1FN)
 
-A primeira norma exige que existe atomocidade dos dados, ou seja, sem valores repetifos ou compostos em um único campo.
+A primeira norma exige que existe atomicidade dos dados, ou seja, sem valores repetidos ou compostos em um único campo.
 
 No modelo criado não há essa violação explicitamente, no entanto, se um cliente comprasse dois produtos no mesmo pedido acabaria violando esta primeira norma.
 
@@ -92,4 +92,4 @@ INSERT INTO itens_pedido (pedido_id, produto_id, quantidade) values
 (2, 3, 1);
 
 
-Com essa nova reorganização os dados são seprados por entidades de maneira organizada, eliminando as repetições e dependências transitivas que existe no modelo anterior, além de está em conformidade com as formas normais e sendo mais fácil o consulto e expansão.
+Com essa nova reorganização os dados são seprados por entidades de maneira organizada, eliminando as repetições e dependências transitivas que existe no modelo anterior, além de está em conformidade com as formas normais e sendo mais fácil o consulta e expansão.
