@@ -135,3 +135,4 @@ INSERT INTO itens_pedido (pedido_id, produto_id, quantidade, fornecedor_id) VALU
     O novo modelo elimina redundâncias, previne anomalias de inserção, atualização e exclusão, e garante que os dados estejam sempre consistentes, seguindo as boas práticas de normalização de bancos de dados.
 
 ![alt text](image.png)
+
