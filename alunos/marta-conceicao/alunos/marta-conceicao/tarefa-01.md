@@ -1,4 +1,0 @@
-Apresentação Pessoal – Marta Conceição (versão revisada)
-Olá! Sou Marta Conceição, profissional com sólida experiência em engenharia de processos e qualidade, especialmente no setor de manufatura eletrônica. Depois de mais de uma década liderando auditorias, melhorias contínuas e projetos Lean Six Sigma, decidi migrar para a área de tecnologia — uma transição natural, já que sempre fui apaixonada por inovação e dados.
-Atualmente, estou estudando Análise e Desenvolvimento de Sistemas, além de me aprofundar em ferramentas como Python, SQL, Git e Power BI. Acredito que minha bagagem em processos industriais será fundamental para construir soluções tecnológicas que otimizem rotinas, automatizem tarefas e ajudem pessoas e empresas a tomarem decisões mais assertivas.
-Meu objetivo é usar a tecnologia como meio de transformar realidades, aplicando minha experiência para criar soluções eficientes, acessíveis e com impacto social.
