@@ -43,3 +43,13 @@ Nesta etapa, vamos aprofundar o conhecimento sobre comandos do git e funcionamen
 📄 [Acesse a tarefa aqui](tarefas/003_TAREFA_GITFLOW.md)
 
 ---
+
+## 4. Tarefa 04 - Spring Initializr, H2 e Configuração Inicial do Projeto
+
+Nesta etapa, você irá criar e executar seu primeiro projeto com Spring Boot utilizando o Spring Initializr. Vai aprender a configurar o banco H2 em memória, utilizar o Actuator para health check e aplicar versionamento de banco com Flyway.
+
+---
+
+📄 [Documentação](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/documentos/003_START_PROJECT.md)  
+📄 [Acesse a tarefa aqui](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/tarefas/004_TAREFA_SPRING_INITIALIZER.md)
+
