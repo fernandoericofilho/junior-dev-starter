@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-Meu gatinho tomou leite e ficou feliz! 
-=======
-Meu gatinho tomou leite, mas ficou triste!
->>>>>>> release/v1.0.0
+
+Meu gatinho tomou leite e ficou feliz!
+
+
