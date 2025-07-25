@@ -1,4 +1,4 @@
-public class EXERCICIO021 {
+public class EXERCICIO21 {
     public static void main(String[] args) {
         int[] array = new int[10];
 
