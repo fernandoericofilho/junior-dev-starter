@@ -3,7 +3,7 @@
 Me chamo Lucas Kevin Silva de Carvalho tenho 23 anos e moro na cidade de São Paulo.
 Estou cursando o 2° semestre de Análise e Desenvolvimento de Sistemas (USJT). Venho de uma transição de carreira, atuei como técnico mecatrônico na área de automação industrial onde tive muito contato com algoritimo e lógica.
 
-Meu objetivo é me tornar um desenvolvedor de software com foco em instituições financeiras. Atualmente busco me aprimorar na área e estou estudando para trabalhar efetivamente com desenvolvimento, acredito que a melhor forma de aprender é na prática, executando toda teoria que é aprendida. Sempre fui muito criativo e acredito que a tecnologia consegue proporcionar essa liberdade de criar coisas incríveis e resolver problemas, penso que nada é impossível e tudo tem  uma solução, e encontrar  essa resposta é o que me motiva.
+Meu objetivo é me tornar um desenvolvedor de software com foco em instituições financeiras. Atualmente busco me aprimorar na área e estou estudando para trabalhar efetivamente com desenvolvimento, acredito que a melhor forma de aprender é na prática, executando toda teoria que é aprendida. Sempre fui muito criativo e acredito que a tecnologia consegue proporcionar essa liberdade de criar coisas incríveis e resolver problemas, penso que nada é impossível e tudo tem uma solução, e encontrar essa resposta é o que me motiva.
 
 
 ## Estudo técnico introdutório
@@ -62,6 +62,12 @@ Tabela Pedido:
 | 3          | 3           | 2           |
 
 Agora, se o preço da caneta mudar, é só atualizar na tabela Produto, e não em todos os pedidos.
+
+Comentário explicativo:
+Neste modelo normalizado, as tabelas estão relacionadas por meio de chaves estrangeiras. A tabela Pedido conecta Cliente e Produto usando os campos ID_Cliente e ID_Produto, que se referem às chaves primárias nas respectivas tabelas. Isso permite armazenar os dados de forma organizada e evita duplicação, mantendo a integridade dos relacionamentos.
+
+>Chaves:
+As chaves primárias garantem que cada registro em uma tabela seja único e facilmente identificável, como o ID_Cliente na tabela de clientes. Já as chaves estrangeiras são utilizadas para criar relações entre tabelas, como o ID_Cliente e o ID_Produto presentes na tabela de pedidos, que se referem aos respectivos IDs nas tabelas Cliente e Produto. Essas chaves asseguram a integridade referencial, ou seja, evitam que sejam inseridos dados inválidos ou desconectados, mantendo a consistência das informações no banco de dados.
 
 ## Fontes Utilziadas
 
