@@ -6,16 +6,16 @@
 **(A) Eliminar atributos multivalorados.**
 
 2. A cardinalidade de um relacionamento define:
-**(B) O número de registros permitidos em uma tabela.**
+**(C) O número de ocorrências entre os registros de entidades relacionadas.**
 
 3. Qual das alternativas caracteriza uma chave primária?
 **(D) Identifica unicamente cada linha.**
 
 4. Qual comando Git cria uma nova branch?
-**(C) git checkout**
+**(D) git checkout -b nome-da-branch**
 
 5. No GitFlow, qual branch é usada para subir código pronto para produção?
-**(A) develop**
+**(B) main/master**
 
 6. Qual comando é usado para ver o histórico de commits no Git?
 **(B) git log**
@@ -57,7 +57,7 @@
 **(C) Baixa e integra alterações do repositório remoto.**
 
 19. Qual dependência deve ser adicionada no Spring Initializr para que o Flyway funcione corretamente em um projeto com banco de dados?
-**Spring Boot DevTools**
+**Flyway**
 
 20. Qual endpoint exposto pelo Spring Boot Actuator verifica se a aplicação está de pé?
-**(A) /start**
+**/actuator/health**
