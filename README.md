@@ -53,3 +53,31 @@ Nesta etapa, você irá criar e executar seu primeiro projeto com Spring Boot ut
 📄 [Documentação](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/documentos/003_START_PROJECT.md)  
 📄 [Acesse a tarefa aqui](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/tarefas/004_TAREFA_SPRING_INITIALIZER.md)
 
+---
+
+## 5. Tarefa 05 - Prova de Conhecimentos Técnicos
+
+Esta prova tem como objetivo revisar os fundamentos de programação com foco em lógica, sintaxe e estrutura da linguagem Java. São exercícios práticos que abordam desde variáveis e operadores até classes, métodos e estruturas de dados.
+
+📄 [Acesse a prova aqui](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/tarefas/005_PROVA_01.md)
+
+---
+
+## 6. Tarefa 06 - Revisão de Fundamentos Java
+
+Material complementar para reforçar conceitos básicos e intermediários da linguagem Java. É essencial para se preparar para os exercícios da prova e para outras tarefas práticas da trilha.
+
+📄 [Acesse o material aqui](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/tarefas/006_REVISAO_JAVA_BASICO.md)
+
+---
+
+## 7. Tarefa 07 - Spring Data JPA e Mapeamento de Relacionamentos
+
+Nesta tarefa você deverá criar um projeto Java com Spring Boot utilizando o Spring Data JPA para reforçar o entendimento de:
+
+- Mapeamento de entidades com anotações JPA
+- Criação de relacionamentos entre tabelas
+- Uso do Flyway para versionamento de scripts SQL
+- Implementação de repositórios com métodos usando JPA Query Methods
+
+📄 [Acesse a tarefa aqui](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/tarefas/007_SPRING_DATA_JPA.md)
