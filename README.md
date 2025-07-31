@@ -81,3 +81,19 @@ Nesta tarefa você deverá criar um projeto Java com Spring Boot utilizando o Sp
 - Implementação de repositórios com métodos usando JPA Query Methods
 
 📄 [Acesse a tarefa aqui](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/tarefas/007_SPRING_DATA_JPA.md)
+
+---
+
+## 8. Tarefa 08 - Primeiro Endpoint com Spring MVC
+
+Nesta tarefa você deverá criar um projeto Java com Spring Boot utilizando Spring MVC para reforçar o entendimento de:
+
+- Criação de controller REST com `@RestController`
+- Implementação do método `GET /clientes`
+- Criação de classes `Repository` e `Service`
+- Uso de `@Autowired` para injeção de dependências
+- Testes de requisições com o Postman
+
+📄 [Acesse a tarefa aqui](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/tarefas/008_FIRST_ENDPOINT.md)
+
+
