@@ -35,9 +35,7 @@ A estrutura básica da sua aplicação deve seguir este padrão:
   src/
   └── main/
   └── java/
-  └── com/
-  └── seuusuario/
-  └── seuprojeto/
+  └── com.seuprojeto/
   ├── controller/
   │ └── ClienteController.java
   ├── service/
