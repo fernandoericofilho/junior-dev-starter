@@ -1,5 +1,6 @@
 package com.example.SpringDataJPAeMapeamentoDeRelacionamentos.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.Objects;
 import java.util.ArrayList;
@@ -20,9 +21,11 @@ public class Cliente {
     private String email;
 
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Endereco endereco;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonManagedReference
     private List<Telefone> telefones = new ArrayList<>();
 
     public Cliente() {
