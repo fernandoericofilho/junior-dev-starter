@@ -78,20 +78,20 @@ Crie um arquivo `V2__insert_dados_iniciais.sql` dentro da pasta `src/main/resour
 
 ```sql
 -- Inserindo clientes
-INSERT INTO cliente (id, nome, email) VALUES
-  (1, 'Ana Paula', 'ana.paula@example.com'),
-  (2, 'Carlos Silva', 'carlos.silva@example.com');
+INSERT INTO cliente (nome, email) VALUES
+  ('Ana Paula', 'ana.paula@example.com'),
+  ('Carlos Silva', 'carlos.silva@example.com');
 
 -- Inserindo endereços
-INSERT INTO endereco (id, rua, cidade, estado, cep, cliente_id) VALUES
-  (1, 'Rua das Flores', 'São Paulo', 'SP', '01001-000', 1),
-  (2, 'Avenida Brasil', 'Rio de Janeiro', 'RJ', '20040-001', 2);
+INSERT INTO endereco (rua, cidade, estado, cep, cliente_id) VALUES
+  ('Rua das Flores', 'São Paulo', 'SP', '01001-000', 1),
+  ('Avenida Brasil', 'Rio de Janeiro', 'RJ', '20040-001', 2);
 
 -- Inserindo telefones
-INSERT INTO telefone (id, numero, tipo, cliente_id) VALUES
-  (1, '(11) 91234-5678', 'CELULAR', 1),
-  (2, '(21) 3234-5678', 'FIXO', 2),
-  (3, '(11) 93333-4444', 'CELULAR', 1);
+INSERT INTO telefone (numero, tipo, cliente_id) VALUES
+  ('(11) 91234-5678', 'CELULAR', 1),
+  ('(21) 3234-5678', 'FIXO', 2),
+  ('(11) 93333-4444', 'CELULAR', 1);
 ```
 
 ## 📦 Entidades Java
