@@ -1,0 +1,3 @@
+##No Gitflow, o desenvolvimento começa em branches feature, onde novas funcionalidades são criadas isoladamente. Quando prontas, elas são integradas em uma branch release para testes e ajustes finais. Depois, o código vai para a main, que é a versão estável para produção. Se surgir algum problema urgente na main, um hotfix é feito para corrigir rapidamente, garantindo a estabilidade do sistema.
+
+##Esse fluxo organiza o desenvolvimento, facilita a colaboração e mantém o código estável e seguro.
