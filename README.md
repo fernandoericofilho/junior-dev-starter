@@ -96,4 +96,21 @@ Nesta tarefa você deverá criar um projeto Java com Spring Boot utilizando Spri
 
 📄 [Acesse a tarefa aqui](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/tarefas/008_FIRST_ENDPOINT.md)
 
+---
+
+## 9. Tarefa 09 - Cliente: Uso de DTOs, Optional e Princípio do Mínimo Privilégio
+
+Nesta tarefa você deverá refatorar o CRUD da entidade Cliente aplicando boas práticas de arquitetura, como o uso de DTOs para entrada e saída, separação entre as camadas (Controller, Service e Repository), aplicação do princípio do mínimo privilégio e tratamento global de exceções.
+
+Requisitos principais desta tarefa:
+
+- Separar responsabilidades entre Controller, Service e Repository
+- Criar e utilizar DTOs (`ClienteRequestDTO` e `ClienteResponseDTO`)
+- Usar `Optional` para tratar buscas na camada de serviço
+- Implementar um handler global de exceções com `@ControllerAdvice`
+- Evitar que a camada Controller tenha acesso direto ao modelo de domínio
+
+🚀 Tarefa Extra: adicionar Swagger para documentação dos endpoints do `ClienteController`.
+
+📄 Acesse a tarefa aqui: [tarefas/009_CONTRACTS.md](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/tarefas/009_CONTRACTS.md)
 
