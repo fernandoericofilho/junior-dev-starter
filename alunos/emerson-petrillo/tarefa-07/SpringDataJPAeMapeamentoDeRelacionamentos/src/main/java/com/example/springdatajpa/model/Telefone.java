@@ -1,4 +1,4 @@
-package com.example.SpringDataJPAeMapeamentoDeRelacionamentos.model;
+package com.example.springdatajpa.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -21,7 +21,6 @@ public class Telefone {
 
     public Telefone() {}
 
-    // Getters e Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getNumero() { return numero; }

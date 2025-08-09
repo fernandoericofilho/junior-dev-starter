@@ -1,10 +1,11 @@
-package com.example.SpringDataJPAeMapeamentoDeRelacionamentos.model;
+package com.example.springdatajpa.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import java.util.Objects;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "cliente")

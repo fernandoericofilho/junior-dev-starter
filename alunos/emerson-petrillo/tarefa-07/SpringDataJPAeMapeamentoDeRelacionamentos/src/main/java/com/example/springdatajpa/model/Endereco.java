@@ -1,4 +1,4 @@
-package com.example.SpringDataJPAeMapeamentoDeRelacionamentos.model;
+package com.example.springdatajpa.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
