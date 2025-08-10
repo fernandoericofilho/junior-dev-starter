@@ -1,4 +1,4 @@
-# Tarefa 09 — Spring Data JPA e Relacionamentos
+# Tarefa 07 — Spring Data JPA e Relacionamentos
 
 ## 💻 Como rodar o projeto
 
@@ -16,7 +16,7 @@ git clone https://github.com/seu-usuario/seu-repositorio.git
 
 2. Acesse a pasta:
 ```bash
-cd tarefa09/
+cd tarefa07/
 ```
 
 3. Rode o projeto com:
@@ -35,3 +35,18 @@ cd tarefa09/
 
 - Spring Boot Actuator
 - Acesse o Actuator em: `http://localhost:8080/actuator/health`
+
+## 📌 Anotações utilizadas
+
+- `@Entity`, `@Id`, `@GeneratedValue`, `@Repository`
+- `@Data` da biblioteca lombok
+- `@OneToOne`, `@OneToMany`, `@ManyToOne`
+- `@JoinColumn` para chave estrangeira
+- `mappedBy` para mapeamento bidirecional
+
+## 🛠️ Repositórios
+
+- `ClienteRepository` com métodos:
+  - `findByNomeContaining`
+  - `findByEmail`
+  - `findByTelefones_Tipo`

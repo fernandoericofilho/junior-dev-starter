@@ -62,7 +62,7 @@ public class ClienteService {
         return toDTO(salvo);
     }
 
-    public void excluir(Long id) {
+    public void remover(Long id) {
         Cliente cliente = clienteRepository.findById(id)
                 .orElseThrow(() -> new ClienteNotFoundException(id));
         clienteRepository.delete(cliente);
