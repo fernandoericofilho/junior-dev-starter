@@ -1,4 +1,3 @@
-package ClassesEObjetos;
 import ClassesEObjetos.Funcionario;
 
 public class EXERCICIO44 {

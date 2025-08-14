@@ -1,4 +1,3 @@
-package ClassesEObjetos;
 import ClassesEObjetos.Pessoa;
 
 public class EXERCICIO41 {
