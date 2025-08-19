@@ -114,3 +114,30 @@ Requisitos principais desta tarefa:
 
 📄 Acesse a tarefa aqui: [tarefas/009_CONTRACTS.md](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/tarefas/009_CONTRACTS.md)
 
+---
+
+## 10. Tarefa 10 – Cliente: Validações, Paginação, Mapper, Testes e Documentação Avançada
+
+Nesta tarefa, você deverá evoluir o CRUD da entidade **Cliente** implementado na Tarefa 9, aplicando melhorias e boas práticas avançadas para APIs REST em Spring Boot.
+
+### Requisitos principais desta tarefa
+
+- **Validações com Bean Validation**: garantir que os dados de entrada estejam corretos, como nome obrigatório, tamanho mínimo/máximo e e-mail válido.
+- **Paginação e Ordenação**: permitir listagem de clientes paginada e ordenada por campos específicos.
+- **Mapper centralizado**: criar uma classe `ClienteMapper` para conversão consistente entre DTOs e entidade.
+- **Testes unitários e de integração**: garantir que os fluxos de criação, busca e listagem de clientes funcionem corretamente.
+- **Logs estruturados**: registrar operações importantes para auditoria, como criação de clientes e consultas.
+- **Documentação OpenAPI / Swagger**: enriquecer os endpoints do `ClienteController` com descrições, parâmetros e respostas esperadas.
+- **HATEOAS (opcional)**: fornecer links relacionados ao recurso nas respostas da API, permitindo navegação dinâmica.
+
+### Objetivos adicionais
+
+- Centralizar lógica de conversão em `ClienteMapper` para reduzir duplicação no Service.
+- Tratar erros de validação no `GlobalExceptionHandler`, retornando mensagens amigáveis.
+- Configurar endpoints no Postman com parâmetros de paginação (`page`, `size`, `sort`) e salvar a nova collection como `clientes-collection-v2.json`.
+
+🚀 **Tarefa Extra**: adicionar suporte HATEOAS no `ClienteResponseDTO`, incluindo links como `self`, `update`, `delete` e `all`.
+
+📄 Acesse a tarefa aqui: [tarefas/010_MELHORIAS.md](https://github.com/fernandoericofilho/junior-dev-starter/blob/main/tarefas/010_MELHORIAS.md)
+
+
