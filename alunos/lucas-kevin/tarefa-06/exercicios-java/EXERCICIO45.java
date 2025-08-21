@@ -1,5 +1,3 @@
-package ClassesEObjetos;
-
 import ClassesEObjetos.Usuario;
 
 public class EXERCICIO45 {

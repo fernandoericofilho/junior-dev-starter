@@ -1,4 +1,3 @@
-package ClassesEObjetos;
 import ClassesEObjetos.Livro;
 
 public class EXERCICIO42 {

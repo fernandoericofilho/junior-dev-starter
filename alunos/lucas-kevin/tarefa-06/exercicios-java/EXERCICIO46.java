@@ -1,4 +1,4 @@
-package Extras;
+import Extras.DiaDaSemana;
 
 public class EXERCICIO46 {
     public static void main(String[] args) {

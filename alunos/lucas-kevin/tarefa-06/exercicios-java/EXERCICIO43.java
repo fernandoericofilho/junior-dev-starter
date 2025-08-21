@@ -1,5 +1,6 @@
-package ClassesEObjetos;
 // Não precisamos importar a classe Calculadora se ela estiver no mesmo pacote
+
+import ClassesEObjetos.Calculadora;
 
 public class EXERCICIO43 {
     public static void main(String[] args) {
