@@ -1,8 +1,17 @@
 package com.example.springdatajpa.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class ClienteRequestDTO {
 
+    @NotBlank(message = "campo 'NOME' obrigatório e não pode estar em branco.")
+    @Size(min = 3, max = 100, message = "O nome deve ter entre 3 e 100 caracteres.")
     private String nome;
+
+    @NotBlank(message = "campo 'EMAIL' obrigatório.")
+    @Email(message = "formato inválido.")
     private String email;
 
     public ClienteRequestDTO() {

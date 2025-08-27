@@ -6,7 +6,10 @@ import com.example.springdatajpa.service.ClienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +31,7 @@ public class ClienteController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ClienteResponseDTO salvar(@RequestBody ClienteRequestDTO dto) {
+    public ClienteResponseDTO salvar(@Validated @RequestBody ClienteRequestDTO dto) {
         return clienteService.salvar(dto);
     }
 
@@ -37,8 +40,8 @@ public class ClienteController {
             @ApiResponse(responseCode = "200", description = "Lista de clientes retornada com sucesso")
     })
     @GetMapping
-    public List<ClienteResponseDTO> listar() {
-        return clienteService.listarTodos();
+    public Page<ClienteResponseDTO> listar(Pageable pageable) {
+        return clienteService.listarTodos(pageable);
     }
 
     @Operation(summary = "Busca um cliente por seu ID", description = "Retorna os detalhes de um único cliente com base no ID fornecido.")
