@@ -10,5 +10,6 @@ import java.util.List;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     List<Cliente> findByNomeLike(String nome);
+    boolean existsByEmail(String email);
 
 }
