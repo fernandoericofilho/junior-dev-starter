@@ -6,11 +6,11 @@ import jakarta.validation.constraints.Size;
 
 public class ClienteRequestDTO {
 
-    @NotBlank(message = "campo 'NOME' obrigatório e não pode estar em branco.")
+    @NotBlank(message = "O campo 'nome' é obrigatório e não pode estar em branco.")
     @Size(min = 3, max = 100, message = "O nome deve ter entre 3 e 100 caracteres.")
     private String nome;
 
-    @NotBlank(message = "campo 'EMAIL' obrigatório.")
+    @NotBlank(message = "campo 'email' obrigatório.")
     @Email(message = "formato inválido.")
     private String email;
 
