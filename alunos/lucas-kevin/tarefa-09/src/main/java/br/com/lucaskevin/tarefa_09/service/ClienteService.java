@@ -9,19 +9,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import br.com.lucaskevin.tarefa_09.exception.ClienteNotFoundException;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
+    private final ClienteMapper clienteMapper;
 
-    // Injeção de Dependência via construtor
-    public ClienteService(ClienteRepository clienteRepository) {
+    public ClienteService(ClienteRepository clienteRepository, ClienteMapper clienteMapper) {
         this.clienteRepository = clienteRepository;
+        this.clienteMapper = clienteMapper;
     }
 
     public ClienteResponseDTO salvar(ClienteRequestDTO dto) {
@@ -31,6 +28,11 @@ public class ClienteService {
         cliente.setEmail(dto.getEmail());
 
         // Salva a entidade no banco
+        if (clienteRepository.existsByEmail(dto.getEmail())) {
+            throw new IllegalArgumentException("Email já cadastrado: " + dto.getEmail());
+        }
+
+        Cliente cliente = clienteMapper.toEntity(dto);
         Cliente clienteSalvo = clienteRepository.save(cliente);
 
         // Converte a entidade salva para um DTO de resposta e retorna
