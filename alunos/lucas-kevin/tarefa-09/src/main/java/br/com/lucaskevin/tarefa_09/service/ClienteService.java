@@ -2,6 +2,8 @@ package br.com.lucaskevin.tarefa_09.service;
 
 import br.com.lucaskevin.tarefa_09.dto.ClienteRequestDTO;
 import br.com.lucaskevin.tarefa_09.dto.ClienteResponseDTO;
+import br.com.lucaskevin.tarefa_09.exception.ClienteNotFoundException;
+import br.com.lucaskevin.tarefa_09.mapper.ClienteMapper;
 import br.com.lucaskevin.tarefa_09.model.Cliente;
 import br.com.lucaskevin.tarefa_09.repository.ClienteRepository;
 import org.slf4j.Logger;
@@ -13,6 +15,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClienteService {
 
+
+    private static final Logger log = LoggerFactory.getLogger(ClienteService.class);
+
     private final ClienteRepository clienteRepository;
     private final ClienteMapper clienteMapper;
 
@@ -22,10 +27,7 @@ public class ClienteService {
     }
 
     public ClienteResponseDTO salvar(ClienteRequestDTO dto) {
-        // Converte o DTO de requisição para uma entidade Cliente
-        Cliente cliente = new Cliente();
-        cliente.setNome(dto.getNome());
-        cliente.setEmail(dto.getEmail());
+        log.info("Iniciando processo de criação de cliente com email={}", dto.getEmail());
 
         if (clienteRepository.existsByEmail(dto.getEmail())) {
             log.warn("Tentativa de criar cliente com email duplicado: {}", dto.getEmail());
@@ -35,40 +37,31 @@ public class ClienteService {
         Cliente cliente = clienteMapper.toEntity(dto);
         Cliente clienteSalvo = clienteRepository.save(cliente);
 
-        // Converte a entidade salva para um DTO de resposta e retorna
-        return toDTO(clienteSalvo);
+        log.info("Cliente criado com sucesso! id={}, nome={}", clienteSalvo.getId(), clienteSalvo.getNome());
+        return clienteMapper.toDTO(clienteSalvo);
     }
 
-    public List<ClienteResponseDTO> listarTodos() {
-        // Busca todos os clientes do banco
-        return clienteRepository.findAll()
-                .stream()
-                .map(this::toDTO)
-                .collect(Collectors.toList());
     public Page<ClienteResponseDTO> listarTodos(Pageable pageable) {
+        log.info("Buscando lista de clientes paginada. Página={}, Tamanho={}, Ordenação={}",
                 pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
 
         Page<Cliente> clientesPage = clienteRepository.findAll(pageable);
         Page<ClienteResponseDTO> dtoPage = clientesPage.map(clienteMapper::toDTO);
 
+        log.info("Busca paginada concluída. Retornando {} clientes nesta página.", dtoPage.getNumberOfElements());
         return dtoPage;
     }
 
     public ClienteResponseDTO buscarPorId(Long id) {
+        log.info("Iniciando busca por cliente com id={}", id);
+
         Cliente cliente = clienteRepository.findById(id)
-                .orElseThrow(() -> new ClienteNotFoundException(id));
-        return toDTO(cliente);
-    }
+                .orElseThrow(() -> {
+                    log.warn("Cliente com id={} não encontrado.", id);
+                    return new ClienteNotFoundException(id);
+                });
 
-    public List<ClienteResponseDTO> buscaPorInicial(String prefixo) {
-        return clienteRepository.findByNomeLike(prefixo + "%") // Adiciona o '%' para buscar nomes que começam com o prefixo
-                .stream()
-                .map(this::toDTO)
-                .collect(Collectors.toList());
-    }
-
-    // Método privado auxiliar para converter Entidade -> DTO
-    private ClienteResponseDTO toDTO(Cliente cliente) {
-        return new ClienteResponseDTO(cliente.getId(), cliente.getNome(), cliente.getEmail());
+        log.info("Cliente com id={} encontrado com sucesso.", id);
+        return clienteMapper.toDTO(cliente);
     }
 }
