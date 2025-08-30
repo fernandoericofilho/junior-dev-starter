@@ -9,6 +9,7 @@ CREATE TABLE endereco (
     logradouro VARCHAR(200),
     cidade VARCHAR(100),
     estado VARCHAR(50),
+    cep VARCHAR(20),
     cliente_id BIGINT UNIQUE,
     CONSTRAINT fk_endereco_cliente FOREIGN KEY (cliente_id) REFERENCES cliente(id)
 );
