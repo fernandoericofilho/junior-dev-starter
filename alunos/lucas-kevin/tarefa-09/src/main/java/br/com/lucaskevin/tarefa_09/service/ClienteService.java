@@ -4,6 +4,10 @@ import br.com.lucaskevin.tarefa_09.dto.ClienteRequestDTO;
 import br.com.lucaskevin.tarefa_09.dto.ClienteResponseDTO;
 import br.com.lucaskevin.tarefa_09.model.Cliente;
 import br.com.lucaskevin.tarefa_09.repository.ClienteRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import br.com.lucaskevin.tarefa_09.exception.ClienteNotFoundException;
 
@@ -39,6 +43,13 @@ public class ClienteService {
                 .stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
+    public Page<ClienteResponseDTO> listarTodos(Pageable pageable) {
+                pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
+
+        Page<Cliente> clientesPage = clienteRepository.findAll(pageable);
+        Page<ClienteResponseDTO> dtoPage = clientesPage.map(clienteMapper::toDTO);
+
+        return dtoPage;
     }
 
     public ClienteResponseDTO buscarPorId(Long id) {

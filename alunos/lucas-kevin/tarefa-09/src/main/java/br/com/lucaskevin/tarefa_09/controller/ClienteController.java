@@ -6,9 +6,9 @@ import br.com.lucaskevin.tarefa_09.service.ClienteService;
 // Imports do Swagger/OpenAPI
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -19,7 +19,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/clientes")
@@ -49,13 +48,17 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
     }
 
-    @Operation(summary = "Lista todos os clientes", description = "Retorna uma lista com todos os clientes cadastrados")
-    @ApiResponse(responseCode = "200", description = "Lista retornada com sucesso",
-            content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = ClienteResponseDTO.class)))
+    @Operation(summary = "Listar todos os clientes",
+            description = "Retorna uma lista paginada com todos os clientes cadastrados. Você pode customizar a paginação usando os parâmetros 'page', 'size' e 'sort'.",
+            parameters = {
+                    @Parameter(in = ParameterIn.QUERY, name = "page", description = "Número da página (começa em 0)", schema = @Schema(type = "integer", defaultValue = "0")),
+                    @Parameter(in = ParameterIn.QUERY, name = "size", description = "Quantidade de elementos por página", schema = @Schema(type = "integer", defaultValue = "10")),
+                    @Parameter(in = ParameterIn.QUERY, name = "sort", description = "Critério de ordenação no formato: propriedade,asc|desc. Exemplo: nome,asc", schema = @Schema(type = "string"))
+            })
+    @ApiResponse(responseCode = "200", description = "Lista de clientes retornada com sucesso")
     @GetMapping
-    public ResponseEntity<List<ClienteResponseDTO>> listar() {
-        return ResponseEntity.ok(clienteService.listarTodos());
+    public ResponseEntity<Page<ClienteResponseDTO>> listar(@Parameter(hidden = true) Pageable pageable) {
+        return ResponseEntity.ok(clienteService.listarTodos(pageable));
     }
 
     @Operation(summary = "Busca um cliente por ID", description = "Retorna os dados de um cliente específico a partir do seu ID")
