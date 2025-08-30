@@ -3,7 +3,6 @@ package br.com.lucaskevin.tarefa_09.controller;
 import br.com.lucaskevin.tarefa_09.dto.ClienteRequestDTO;
 import br.com.lucaskevin.tarefa_09.dto.ClienteResponseDTO;
 import br.com.lucaskevin.tarefa_09.service.ClienteService;
-// Imports do Swagger/OpenAPI
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/clientes")
-@Tag(name = "Cliente API", description = "API para gerenciamento de clientes")
+@Tag(name = "Clientes", description = "API para o gerenciamento de clientes")
 public class ClienteController {
 
     private final ClienteService clienteService;
@@ -31,16 +30,10 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-    @Operation(
-            summary = "Salva um novo cliente",
-            description = "Cria um novo cliente no banco de dados"
-    )
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Cliente criado com sucesso",
-                    content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = ClienteResponseDTO.class))),
-            @ApiResponse(responseCode = "400", description = "Dados de requisição inválidos",
-                    content = @Content)
+    @Operation(summary = "Criar um novo cliente", description = "Endpoint para cadastrar um novo cliente no sistema.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Cliente criado com sucesso", content = @Content(schema = @Schema(implementation = ClienteResponseDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Erro de validação nos dados enviados", content = @Content)
     })
     @PostMapping
     public ResponseEntity<ClienteResponseDTO> salvar(@Valid @RequestBody ClienteRequestDTO dto) {
@@ -61,31 +54,13 @@ public class ClienteController {
         return ResponseEntity.ok(clienteService.listarTodos(pageable));
     }
 
-    @Operation(summary = "Busca um cliente por ID", description = "Retorna os dados de um cliente específico a partir do seu ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Cliente encontrado",
-                    content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = ClienteResponseDTO.class))),
-            @ApiResponse(responseCode = "404", description = "Cliente não encontrado para o ID informado",
-                    content = @Content)
+    @Operation(summary = "Buscar cliente por ID", description = "Retorna os dados de um cliente específico baseado no seu ID.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Cliente encontrado com sucesso", content = @Content(schema = @Schema(implementation = ClienteResponseDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Cliente não encontrado para o ID informado", content = @Content)
     })
     @GetMapping("/{id}")
-    public ResponseEntity<ClienteResponseDTO> buscarPorId(
-            @Parameter(description = "ID do cliente a ser buscado", required = true, example = "1")
-            @PathVariable Long id
-    ) {
+    public ResponseEntity<ClienteResponseDTO> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(clienteService.buscarPorId(id));
-    }
-
-    @Operation(summary = "Busca clientes por prefixo do nome", description = "Retorna uma lista de clientes cujo nome começa com o prefixo informado")
-    @ApiResponse(responseCode = "200", description = "Clientes encontrados",
-            content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = ClienteResponseDTO.class)))
-    @GetMapping("/prefix/{prefixo}")
-    public ResponseEntity<List<ClienteResponseDTO>> buscarPorPrefixo(
-            @Parameter(description = "Prefixo do nome para busca", example = "Lu")
-            @PathVariable String prefixo
-    ) {
-        return ResponseEntity.ok(clienteService.buscaPorInicial(prefixo));
     }
 }
