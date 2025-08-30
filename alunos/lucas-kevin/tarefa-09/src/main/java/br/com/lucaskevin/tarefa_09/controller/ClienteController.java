@@ -12,6 +12,9 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,14 +44,7 @@ public class ClienteController {
                     content = @Content)
     })
     @PostMapping
-    public ResponseEntity<ClienteResponseDTO> salvar(
-            @RequestBody(
-                    description = "Dados do cliente a ser criado",
-                    required = true,
-                    content = @Content(schema = @Schema(implementation = ClienteRequestDTO.class))
-            )
-            @org.springframework.web.bind.annotation.RequestBody ClienteRequestDTO dto
-    ) {
+    public ResponseEntity<ClienteResponseDTO> salvar(@Valid @RequestBody ClienteRequestDTO dto) {
         ClienteResponseDTO clienteSalvo = clienteService.salvar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
     }
