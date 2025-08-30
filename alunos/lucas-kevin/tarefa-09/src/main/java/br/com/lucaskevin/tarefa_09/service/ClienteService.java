@@ -27,8 +27,8 @@ public class ClienteService {
         cliente.setNome(dto.getNome());
         cliente.setEmail(dto.getEmail());
 
-        // Salva a entidade no banco
         if (clienteRepository.existsByEmail(dto.getEmail())) {
+            log.warn("Tentativa de criar cliente com email duplicado: {}", dto.getEmail());
             throw new IllegalArgumentException("Email já cadastrado: " + dto.getEmail());
         }
 
