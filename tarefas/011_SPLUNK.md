@@ -12,14 +12,14 @@
 - Criar dashboards simples
 
 ### 1️⃣ Cadastro no Splunk Cloud
-1. Acesse [Splunk Cloud Trial](https://www.splunk.com/en_us/download/splunk-cloud.html)  
+1. Acesse [Splunk Cloud Trial](https://www.splunk.com/en_us/products/splunk-cloud-platform.html)  
 2. Clique em **Start Free Trial**  
 3. Preencha o formulário de cadastro e envie  
 4. Ative sua conta pelo e-mail recebido  
 5. Você receberá um email com os dados para login com(URl do Cloud, Usuário e Senha temporaria)
 
 ### 2️⃣ Acessando a Instância Trial
-1. Faça login na URl do Cloud (recebido no email)
+1. Faça login no [Splunk Portal](https://www.splunk.com/)  
 2. Clique em **Start Trial** (se ainda não iniciou)  
 3. Vá para a tela **Instances**, onde verá sua instância criada automaticamente  
 - Status: **Active**  
