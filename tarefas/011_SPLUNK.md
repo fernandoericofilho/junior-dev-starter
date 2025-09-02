@@ -16,6 +16,7 @@
 2. Clique em **Start Free Trial**  
 3. Preencha o formulário de cadastro e envie  
 4. Ative sua conta pelo e-mail recebido  
+5. Você receberá um email com os dados para login com(URl do Cloud, Usuário e Senha temporaria)
 
 ### 2️⃣ Acessando a Instância Trial
 1. Faça login no [Splunk Portal](https://www.splunk.com/)  
@@ -24,7 +25,7 @@
 - Status: **Active**  
 - Tamanho: 5GB  
 - Duração: 14 dias  
-- Provisionamento leva cerca de 1 hora  
+- Provisionamento leva de 5 minutos a 1 hora
 
 ### 3️⃣ Gerenciamento da Instância
 - Botões: **Reset Password**, **Access Instance** (aguarde o provisionamento se estiver desabilitado)  
@@ -43,9 +44,9 @@
 > Sem dados, as buscas não retornarão resultados  
 
 ### 6️⃣ Carregando dados de exemplo
-1. Baixe o arquivo `tutorialdata.zip`  
+1. Baixe o arquivo [tutorialdata.zip](./tutorialdata.zip) 
 2. No Splunk Web, vá em **Settings → Add Data → Upload → Upload Files** e selecione o arquivo  
-3. Confirme ou ajuste o **Sourcetype**  
+3. Siga o passo a passo. Confirme ou ajuste o **Sourcetype**  
 4. Clique em **Submit** para indexar os dados  
 
 > Indexação pode levar alguns segundos ou minutos  
