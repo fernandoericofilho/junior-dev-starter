@@ -90,7 +90,3 @@ CONSTRAINT `itens_pedido_produtos_FK` FOREIGN KEY (`id_produto`) REFERENCES `pro
 Estas novas tabelas corrigem os problemas que a tabela pedidos tinha inicialmente, pois separa os atributos em suas respectivas tabelas, cada uma com sua chave primária e os atributos não-chave dependendo do atributo chave de sua tabela.
 Dessa forma também é possível criar os relacionamentos entre as tabelas através da chave estrangeira.
 
-Print DER das tabelas:
-
-![print DER](print-diagrama-tabelas-loja.png)
-
