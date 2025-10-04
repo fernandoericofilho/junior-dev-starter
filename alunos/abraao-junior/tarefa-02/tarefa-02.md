@@ -32,13 +32,10 @@ CONSTRAINT `telefone_cliente_cliente_FK` FOREIGN KEY (`id_cliente`) REFERENCES `
 );
 
 --CREATE TABLE `endereco_entrega` (
-`endereco_id` int NOT NULL AUTO_INCREMENT,
-`id_cliente` int NOT NULL,
 `logradouro` varchar(200) NOT NULL,
 `numero` int NOT NULL,
-PRIMARY KEY (`endereco_id`),
-KEY `endereco_entrega_cliente_FK` (`id_cliente`),
-CONSTRAINT `endereco_entrega_cliente_FK` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)
+`endereco_id` int NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (`endereco_id`)
 );
 
 --CREATE TABLE `fornecedores` (
@@ -80,6 +77,7 @@ CONSTRAINT `pedidos_endereco_entrega_FK` FOREIGN KEY (`endereco_id`) REFERENCES 
 `id_pedido` int NOT NULL,
 `id_produto` int NOT NULL,
 `quantidade` int NOT NULL,
+`valor_unidade` decimal(10,2) NOT NULL,
 PRIMARY KEY (`itens_id`),
 KEY `itens_pedido_pedidos_FK` (`id_pedido`),
 KEY `itens_pedido_produtos_FK` (`id_produto`),
@@ -92,4 +90,4 @@ Dessa forma também é possível criar os relacionamentos entre as tabelas atrav
 
 Print DER:
 
-![print-DER](print-diagrama-tabelas-loja.png)
+![Diagrama-BD-loja](DiagramaBDloja.png)
