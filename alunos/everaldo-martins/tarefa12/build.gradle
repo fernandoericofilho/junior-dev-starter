@@ -68,13 +68,13 @@ tasks.jacocoTestReport {
     classDirectories.setFrom(
             files(classDirectories.files.collect {
                 fileTree(dir: it, exclude: [
-                        'com/junior_dev_starter/tarefa10/Application*',
-                        'com/junior_dev_starter/tarefa10/assemblers',
-                        'com/junior_dev_starter/tarefa10/configs/**',
-                        'com/junior_dev_starter/tarefa10/dtos/**',
-                        'com/junior_dev_starter/tarefa10/exceptions/**',
-                        'com/junior_dev_starter/tarefa10/mappers/**',
-                        'com/junior_dev_starter/tarefa10/enums/*'
+                        'com/junior_dev_starter/tarefa12/Application*',
+                        'com/junior_dev_starter/tarefa12/assemblers',
+                        'com/junior_dev_starter/tarefa12/configs/**',
+                        'com/junior_dev_starter/tarefa12/dtos/**',
+                        'com/junior_dev_starter/tarefa12/exceptions/**',
+                        'com/junior_dev_starter/tarefa12/mappers/**',
+                        'com/junior_dev_starter/tarefa12/enums/*'
                 ])
             })
     )
@@ -102,13 +102,13 @@ tasks.jacocoTestCoverageVerification {
     classDirectories.setFrom(
             files(classDirectories.files.collect {
                 fileTree(dir: it, exclude: [
-                        'com/junior_dev_starter/tarefa10/Application*',
-                        'com/junior_dev_starter/tarefa10/assemblers',
-                        'com/junior_dev_starter/tarefa10/configs/**',
-                        'com/junior_dev_starter/tarefa10/dtos/**',
-                        'com/junior_dev_starter/tarefa10/exceptions/**',
-                        'com/junior_dev_starter/tarefa10/mappers/**',
-                        'com/junior_dev_starter/tarefa10/enums/*'
+                        'com/junior_dev_starter/tarefa12/Application*',
+                        'com/junior_dev_starter/tarefa12/assemblers',
+                        'com/junior_dev_starter/tarefa12/configs/**',
+                        'com/junior_dev_starter/tarefa12/dtos/**',
+                        'com/junior_dev_starter/tarefa12/exceptions/**',
+                        'com/junior_dev_starter/tarefa12/mappers/**',
+                        'com/junior_dev_starter/tarefa12/enums/*'
                 ])
             })
     )
