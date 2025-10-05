@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Testes para ClienteService" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-10-05T16:34:45.344Z" hostname="dem" time="0.935">
+  <properties/>
+  <testcase name="Deve lançar IllegalArgumentException quando email duplicado na atualização" classname="com.junior_dev_starter.tarefa12.services.ClienteServiceTest" time="0.829"/>
+  <testcase name="Deve lançar ClienteNotFoundException quando cliente não encontrado para atualização" classname="com.junior_dev_starter.tarefa12.services.ClienteServiceTest" time="0.011"/>
+  <testcase name="Deve lançar ClienteNotFoundException ao tentar remover cliente inexistente" classname="com.junior_dev_starter.tarefa12.services.ClienteServiceTest" time="0.008"/>
+  <testcase name="Deve remover cliente quando encontrado" classname="com.junior_dev_starter.tarefa12.services.ClienteServiceTest" time="0.025"/>
+  <testcase name="Deve retornar página vazia quando nome for nulo ou vazio" classname="com.junior_dev_starter.tarefa12.services.ClienteServiceTest" time="0.009"/>
+  <testcase name="Deve lançar IllegalArgumentException ao tentar salvar cliente com email já cadastrado" classname="com.junior_dev_starter.tarefa12.services.ClienteServiceTest" time="0.01"/>
+  <testcase name="Deve salvar cliente com sucesso quando dados válidos são fornecidos" classname="com.junior_dev_starter.tarefa12.services.ClienteServiceTest" time="0.019"/>
+  <testcase name="Deve retornar página vazia quando nenhum cliente encontrado por nome" classname="com.junior_dev_starter.tarefa12.services.ClienteServiceTest" time="0.011"/>
+  <system-out><![CDATA[2025-10-05T13:34:46.127-03:00  INFO 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Atualizando cliente com email=joao.silva@email.com
+2025-10-05T13:34:46.138-03:00  WARN 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Tentativa de atualizar cliente com email duplicado=joao.silva@email.com
+2025-10-05T13:34:46.186-03:00  INFO 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Atualizando cliente com email=joao.silva@email.com
+2025-10-05T13:34:46.187-03:00  WARN 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Cliente com id=1 não encontrado.
+2025-10-05T13:34:46.230-03:00  INFO 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Buscando clientes por nome=null com paginação
+2025-10-05T13:34:46.231-03:00  WARN 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Nome de busca não fornecido ou vazio.
+2025-10-05T13:34:46.231-03:00  INFO 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Buscando clientes por nome=    com paginação
+2025-10-05T13:34:46.232-03:00  WARN 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Nome de busca não fornecido ou vazio.
+2025-10-05T13:34:46.243-03:00  INFO 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Criando cliente com email=joao.silva@email.com
+2025-10-05T13:34:46.244-03:00  WARN 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Tentativa de criar cliente duplicado com email=joao.silva@email.com
+2025-10-05T13:34:46.260-03:00  INFO 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Criando cliente com email=joao.silva@email.com
+2025-10-05T13:34:46.262-03:00  INFO 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Cliente criado com sucesso id=1 nome=João Silva email=joao.silva@email.com
+2025-10-05T13:34:46.276-03:00  INFO 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Buscando clientes por nome=Maria com paginação
+2025-10-05T13:34:46.277-03:00  INFO 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Total de clientes retornados nesta busca=0
+2025-10-05T13:34:46.277-03:00  INFO 9038 --- [    Test worker] c.j.tarefa12.services.ClienteService     : Nenhum cliente encontrado para o nome=Maria
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClienteController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tarefa12</a> &gt; <a href="index.source.html" class="el_package">com.junior_dev_starter.tarefa12.controllers</a> &gt; <span class="el_source">ClienteController.java</span></div><h1>ClienteController.java</h1><pre class="source lang-java linenums">package com.junior_dev_starter.tarefa12.controllers;
+
+import com.junior_dev_starter.tarefa12.assemblers.ClienteResponseDTOAssembler;
+import com.junior_dev_starter.tarefa12.dtos.ClienteRequestDTO;
+import com.junior_dev_starter.tarefa12.dtos.ClienteResponseDTO;
+import com.junior_dev_starter.tarefa12.services.ClienteService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedModel;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping(&quot;/clientes&quot;)
+@Tag(name = &quot;Clientes&quot;, description = &quot;Endpoints para a gestão de clientes.&quot;)
+public class ClienteController {
+
+    private final ClienteService clienteService;
+    private final ClienteResponseDTOAssembler assembler;
+    private final PagedResourcesAssembler&lt;ClienteResponseDTO&gt; pagedAssembler;
+
+    public ClienteController(
+            ClienteService clienteService,
+            ClienteResponseDTOAssembler assembler,
+<span class="fc" id="L38">            PagedResourcesAssembler&lt;ClienteResponseDTO&gt; pagedAssembler) {</span>
+<span class="fc" id="L39">        this.clienteService = clienteService;</span>
+<span class="fc" id="L40">        this.assembler = assembler;</span>
+<span class="fc" id="L41">        this.pagedAssembler = pagedAssembler;</span>
+<span class="fc" id="L42">    }</span>
+
+    @Operation(summary = &quot;Lista todos os clientes paginados&quot;, description = &quot;Retorna uma lista paginada de todos os clientes, com links de navegação HATEOAS. A ordenação padrão é por 'id'.&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Listagem concluída com sucesso.&quot;,
+                    content = @Content(mediaType = &quot;application/json&quot;,
+                            schema = @Schema(implementation = PagedModel.class))),
+    })
+    @GetMapping
+    public ResponseEntity&lt;PagedModel&lt;ClienteResponseDTO&gt;&gt; listar(
+            @Parameter(description = &quot;Configurações de paginação (tamanho da página, número da página e ordenação).&quot;,
+                    examples = @ExampleObject(name = &quot;Exemplo de Paginação&quot;,
+                            value = &quot;page=0&amp;size=10&amp;sort=id,desc&quot;))
+            @PageableDefault(sort = &quot;id&quot;) Pageable pageable) {
+
+<span class="fc" id="L57">        Page&lt;ClienteResponseDTO&gt; pageDTO = clienteService.listarTodos(pageable);</span>
+<span class="fc" id="L58">        PagedModel&lt;ClienteResponseDTO&gt; pagedModel = pagedAssembler.toModel(pageDTO, assembler);</span>
+
+<span class="fc" id="L60">        return ResponseEntity.ok(pagedModel);</span>
+    }
+
+    @Operation(summary = &quot;Busca um cliente pelo ID&quot;, description = &quot;Retorna um cliente pelo ID fornecido, com links HATEOAS para ações de atualização e remoção.&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Cliente encontrado com sucesso.&quot;,
+                    content = @Content(mediaType = &quot;application/json&quot;,
+                            schema = @Schema(implementation = ClienteResponseDTO.class))),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Cliente com o ID especificado não foi encontrado.&quot;,
+                    content = @Content)
+    })
+    @GetMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;ClienteResponseDTO&gt; buscarPorId(
+            @Parameter(description = &quot;ID do cliente a ser buscado.&quot;, required = true) @PathVariable Long id) {
+
+<span class="fc" id="L75">        ClienteResponseDTO dto = clienteService.buscarPorId(id);</span>
+<span class="fc" id="L76">        ClienteResponseDTO modelComLinks = assembler.toModel(dto);</span>
+
+<span class="fc" id="L78">        return ResponseEntity.ok(modelComLinks);</span>
+    }
+
+    @Operation(summary = &quot;Busca clientes por nome&quot;, description = &quot;Retorna uma lista paginada de clientes cujo nome contém o texto fornecido (case-insensitive), com links HATEOAS.&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Clientes encontrados com sucesso.&quot;,
+                    content = @Content(mediaType = &quot;application/json&quot;,
+                            schema = @Schema(implementation = PagedModel.class))),
+            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Parâmetro 'nome' não fornecido ou inválido.&quot;,
+                    content = @Content)
+    })
+    @GetMapping(&quot;/nome/{nome}&quot;)
+    public ResponseEntity&lt;PagedModel&lt;ClienteResponseDTO&gt;&gt; buscarClientesPorNome(
+            @Parameter(description = &quot;Nome do cliente a ser buscado.&quot;, required = true) @PathVariable String nome,
+            @Parameter(description = &quot;Configurações de paginação (tamanho da página, número da página e ordenação).&quot;,
+                    examples = @ExampleObject(name = &quot;Exemplo de Paginação&quot;,
+                            value = &quot;page=0&amp;size=10&amp;sort=nome&quot;))
+            @PageableDefault(sort = &quot;nome&quot;) Pageable pageable) {
+
+<span class="fc" id="L97">        Page&lt;ClienteResponseDTO&gt; pageDTO = clienteService.buscarClientesPorNomePaginado(nome, pageable);</span>
+<span class="fc" id="L98">        PagedModel&lt;ClienteResponseDTO&gt; pagedModel = pagedAssembler.toModel(pageDTO, assembler);</span>
+
+<span class="fc" id="L100">        return ResponseEntity.ok(pagedModel);</span>
+    }
+
+    @Operation(summary = &quot;Cria um novo cliente&quot;, description = &quot;Adiciona um novo cliente no banco de dados, com validação de dados de entrada e retorna o cliente criado com links HATEOAS.&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;201&quot;, description = &quot;Cliente criado com sucesso.&quot;,
+                    content = @Content(mediaType = &quot;application/json&quot;,
+                            schema = @Schema(implementation = ClienteResponseDTO.class))),
+            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Dados de cliente inválidos.&quot;,
+                    content = @Content)
+    })
+    @PostMapping
+    public ResponseEntity&lt;ClienteResponseDTO&gt; salvar(
+            @RequestBody(description = &quot;Detalhes do cliente a ser criado.&quot;, required = true,
+                    content = @Content(schema = @Schema(implementation = ClienteRequestDTO.class)))
+            @Validated @org.springframework.web.bind.annotation.RequestBody ClienteRequestDTO dto) {
+
+<span class="fc" id="L117">        ClienteResponseDTO salvo = clienteService.salvar(dto);</span>
+<span class="fc" id="L118">        ClienteResponseDTO modelComLinks = assembler.toModel(salvo);</span>
+
+<span class="fc" id="L120">        return ResponseEntity.status(HttpStatus.CREATED).body(modelComLinks);</span>
+    }
+
+    @Operation(summary = &quot;Atualiza um cliente pelo ID&quot;, description = &quot;Atualiza um cliente existente no banco de dados com os dados fornecidos e retorna o cliente atualizado com links HATEOAS.&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Cliente atualizado com sucesso.&quot;,
+                    content = @Content(mediaType = &quot;application/json&quot;,
+                            schema = @Schema(implementation = ClienteResponseDTO.class))),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Cliente com o ID especificado não foi encontrado.&quot;,
+                    content = @Content),
+            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Dados de cliente inválidos.&quot;,
+                    content = @Content)
+    })
+    @PutMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;ClienteResponseDTO&gt; atualizar(
+            @Parameter(description = &quot;ID do cliente a ser atualizado.&quot;, required = true) @PathVariable Long id,
+            @RequestBody(description = &quot;Novos detalhes do cliente.&quot;, required = true,
+                    content = @Content(schema = @Schema(implementation = ClienteRequestDTO.class)))
+            @Validated @org.springframework.web.bind.annotation.RequestBody ClienteRequestDTO dto) {
+
+<span class="fc" id="L140">        ClienteResponseDTO atualizado = clienteService.atualizar(id, dto);</span>
+<span class="fc" id="L141">        ClienteResponseDTO modelComLinks = assembler.toModel(atualizado);</span>
+
+<span class="fc" id="L143">        return ResponseEntity.ok(modelComLinks);</span>
+    }
+
+    @Operation(summary = &quot;Remove um cliente pelo ID&quot;, description = &quot;Remove um cliente do banco de dados pelo ID fornecido. Uma remoção bem-sucedida retorna um status 204 (No Content).&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;204&quot;, description = &quot;Cliente removido com sucesso.&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Cliente com o ID especificado não foi encontrado.&quot;,
+                    content = @Content)
+    })
+    @DeleteMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;Void&gt; remover(
+            @Parameter(description = &quot;ID do cliente a ser removido.&quot;, required = true) @PathVariable Long id) {
+<span class="fc" id="L155">        clienteService.remover(id);</span>
+<span class="fc" id="L156">        return ResponseEntity.noContent().build();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
