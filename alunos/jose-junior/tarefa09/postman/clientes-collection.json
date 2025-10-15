@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "a7dee58b-0687-47ce-9e5c-9b5a9d3c9be8",
+		"name": "API Cliente",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36156491",
+		"_collection_link": "https://juniorteam-6180.postman.co/workspace/AulaIntensivoJavaSpring~06c08b91-14dd-492c-bd86-12c73fb5bc51/collection/36156491-a7dee58b-0687-47ce-9e5c-9b5a9d3c9be8?action=share&source=collection_link&creator=36156491"
+	},
+	"item": [
+		{
+			"name": "Listar Clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clientes",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Cliente por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clientes/2",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clientes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Maria Oliveira\",\r\n    \"email\": \"maria@exemplo.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Avenida das Américas\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": \"2041-002\"\r\n    },\r\n    \"telefones\": [\r\n        {\r\n            \"numero\": \"(21) 99876-5432\",\r\n            \"tipo\": \"CELULAR\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/clientes",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Cliente por Inicial",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clientes/prefixo/a",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clientes",
+						"prefixo",
+						"a"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
