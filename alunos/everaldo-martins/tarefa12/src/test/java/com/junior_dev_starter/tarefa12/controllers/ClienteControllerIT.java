@@ -1,7 +1,7 @@
-package com.junior_dev_starter.tarefa10;
+package com.junior_dev_starter.tarefa12.controllers;
 
-import com.junior_dev_starter.tarefa10.models.Cliente;
-import com.junior_dev_starter.tarefa10.repositories.ClienteRepository;
+import com.junior_dev_starter.tarefa12.models.Cliente;
+import com.junior_dev_starter.tarefa12.repositories.ClienteRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Transactional
-public class ClienteControllerIT {
+class ClienteControllerIT {
 
     @Autowired
     private MockMvc mockMvc;
