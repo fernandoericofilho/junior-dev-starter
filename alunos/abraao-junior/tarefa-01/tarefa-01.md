@@ -1,6 +1,6 @@
 # **Apresentação Pessoal**
-Olá. Meu nome é Abraão da Silva Junior, tenho 34 anos, sou de Parnamirim/RN, estou me formando no curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas no Centro Universitário de João Pessoa (UNIPÊ)
-e estou em proceso de transição de carreira para esta área. Iniciar essa graduação despertou em mim o interesse pela tecnologia, em especial, programação. Com isso tenho buscado cursos e orientações de quem já atua na área
+Olá. Meu nome é Abraão da Silva Junior, tenho 34 anos, sou de Parnamirim/RN. Estou me formando no curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas no Centro Universitário de João Pessoa (UNIPÊ)
+e estou em processo de transição de carreira para esta área. Iniciar essa graduação despertou em mim o interesse pela tecnologia, em especial, programação. Com isso tenho buscado cursos e orientações de quem já atua na área
 para poder ingressar na carreira de Desenvolvedor Back-end em Java.
 
 ---
@@ -32,7 +32,7 @@ A normalização é um processo de organização do banco de dados que segue um 
 
 __1ª Forma Normal (1FN)__: Eliminar dados repetidos e garantir atomicidade. Cada linha com um valor único e cada coluna sem valores compostos;
 
-__2ª Forma Normal (2FN)__: Eliminar dependência parciai. Cada coluna não chave deve depender da chave-primária inteira (no caso de chave-primária composta).
+__2ª Forma Normal (2FN)__: Eliminar dependência parcial. Cada coluna não chave deve depender da chave-primária inteira (no caso de chave-primária composta).
 
 __3ª Forma Normal (3FN)__: Eliminar dependência transitiva. Coluna não chave não deve depender de outra coluna não chave.
 
