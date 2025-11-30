@@ -1,0 +1,172 @@
+# Diretórios de build
+build/
+target/
+out/
+bin/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Arquivos de IDE
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+*.swp
+*.swo
+*~
+
+# Arquivos do Gradle
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Arquivos do Spring Boot
+spring-boot-app.log
+logs/
+*.log
+log/
+*.log.*
+
+# Arquivos do Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Arquivos do macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.bak
+*.old
+
+# Arquivos de configuração local
+application-local.properties
+application-dev.properties
+*.properties.local
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos de Docker
+docker-compose.override.yml
+
+# Arquivos de banco de dados
+*.db
+*.sqlite
+*.h2.db
+
+# Arquivos do Kafka (dados locais)
+kafka-logs/
+zookeeper-data/
+
+# Arquivos de coverage
+.coverage
+.coverage.*
+htmlcov/
+
+# Arquivos do Maven (caso haja migração)
+pom.xml
+pom.xml.asc
+mvnw
+mvnw.cmd
+.mvn/
+
+# Arquivos de deployment
+*.war
+*.ear
+*.zip
+*.tar
+*.tar.gz
+
+# Arquivos de dependências
+lib/
+libs/
+
+# Arquivos de usuário
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sln.iml
+
+# Arquivos do Patch
+*.patch
+*.diff
+
+# Arquivos de backup
+backup/
+*.backup
+
+# Arquivos de cache
+.cache/
+.parcel-cache/
+
+# Arquivos do Node.js (caso use frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Arquivos do Python (caso use scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Arquivos do Rust (caso use extensions)
+/target/
+**/*.rs.bk
+
+# Arquivos do CI/CD
+.circleci/
+.travis.yml
+.gitlab-ci.yml
+.github/
+!.github/workflows/
+
+# Arquivos de documentação gerada
+docs/_build/
+site/
+
+# Arquivos de teste
+test-results/
+test-report.html
+reports/
+*.jfr
+
+# Arquivos de configuração específicos do projeto
+config/application-*.properties
+!config/application.properties
+!config/application.yml
+
+# Arquivos de lote do Windows
+*.bat
+*.cmd
+
+# Arquivos de shell do Linux/Mac
+*.sh
+!build.sh
+!run.sh
+!stop.sh
+!test.sh
+
+# Arquivos de licença alternativos
+LICENSE-*
+COPYING-*
