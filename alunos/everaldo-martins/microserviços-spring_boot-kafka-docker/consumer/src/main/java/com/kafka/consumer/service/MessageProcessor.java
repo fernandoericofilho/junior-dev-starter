@@ -55,18 +55,18 @@ public class MessageProcessor {
             Acknowledgment ack) {
         
         logger.info("Received {} order messages", messages.size());
-        
+
         for (int i = 0; i < messages.size(); i++) {
-            OrderMessage message = messages.get(i);
-            String key = keys.get(i);
-            
-            orderMessages.put(key, message);
-            orderCounter.incrementAndGet();
-            
-            logger.info("Processed order message - ID: {}, Product: {}, Amount: {}", 
-                message.id(), message.productName(), message.amount());
+            try {
+                OrderMessage message = messages.get(i);
+                String key = keys.get(i);
+                orderMessages.put(key, message);
+                orderCounter.incrementAndGet();
+                logger.info("Processed order message - ID: {}, Product: {}, Amount: {}", message.id(), message.productName(), message.amount());
+            } catch (Exception e) {
+                logger.error("Failed to process individual order msg at index {}: {}", i, e.getMessage());
+            }
         }
-        
         ack.acknowledge();
     }
 
