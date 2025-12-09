@@ -1,0 +1,55 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Spring Boot Monitoring",
+    "tags": ["spring", "postgres"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "HTTP Requests",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "rate(http_server_requests_seconds_count[5m])",
+            "legendFormat": "Req/s"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}
+      },
+      {
+        "id": 2,
+        "title": "JVM Memory",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "jvm_memory_used_bytes{area=\"heap\"}",
+            "legendFormat": "Heap Used"
+          },
+          {
+            "expr": "jvm_memory_max_bytes{area=\"heap\"}",
+            "legendFormat": "Heap Max"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}
+      },
+      {
+        "id": 3,
+        "title": "Database Connections",
+        "type": "stat",
+        "datasource": "PostgreSQL",
+        "targets": [
+          {
+            "rawSql": "SELECT count(*) as connections FROM pg_stat_activity WHERE datname = 'local'",
+            "format": "table"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8}
+      }
+    ],
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    }
+  }
+}
