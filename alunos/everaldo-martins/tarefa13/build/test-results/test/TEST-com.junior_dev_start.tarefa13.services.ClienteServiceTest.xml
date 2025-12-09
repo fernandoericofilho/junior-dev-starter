@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Testes para ClienteService" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-12-09T23:14:37.571Z" hostname="neon" time="0.534">
+  <properties/>
+  <testcase name="Deve lançar IllegalArgumentException quando email duplicado na atualização" classname="com.junior_dev_start.tarefa13.services.ClienteServiceTest" time="0.485"/>
+  <testcase name="Deve lançar ClienteNotFoundException quando cliente não encontrado para atualização" classname="com.junior_dev_start.tarefa13.services.ClienteServiceTest" time="0.005"/>
+  <testcase name="Deve lançar ClienteNotFoundException ao tentar remover cliente inexistente" classname="com.junior_dev_start.tarefa13.services.ClienteServiceTest" time="0.004"/>
+  <testcase name="Deve remover cliente quando encontrado" classname="com.junior_dev_start.tarefa13.services.ClienteServiceTest" time="0.013"/>
+  <testcase name="Deve retornar página vazia quando nome for nulo ou vazio" classname="com.junior_dev_start.tarefa13.services.ClienteServiceTest" time="0.005"/>
+  <testcase name="Deve lançar IllegalArgumentException ao tentar salvar cliente com email já cadastrado" classname="com.junior_dev_start.tarefa13.services.ClienteServiceTest" time="0.004"/>
+  <testcase name="Deve salvar cliente com sucesso quando dados válidos são fornecidos" classname="com.junior_dev_start.tarefa13.services.ClienteServiceTest" time="0.007"/>
+  <testcase name="Deve retornar página vazia quando nenhum cliente encontrado por nome" classname="com.junior_dev_start.tarefa13.services.ClienteServiceTest" time="0.004"/>
+  <system-out><![CDATA[2025-12-09T20:14:38.026-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Atualizando cliente com email=joao.silva@email.com
+2025-12-09T20:14:38.033-03:00  WARN 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Tentativa de atualizar cliente com email duplicado=joao.silva@email.com
+2025-12-09T20:14:38.063-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Atualizando cliente com email=joao.silva@email.com
+2025-12-09T20:14:38.063-03:00  WARN 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Cliente com id=1 não encontrado.
+2025-12-09T20:14:38.086-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Buscando clientes por nome=null com paginação
+2025-12-09T20:14:38.086-03:00  WARN 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Nome de busca não fornecido ou vazio.
+2025-12-09T20:14:38.087-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Buscando clientes por nome=    com paginação
+2025-12-09T20:14:38.087-03:00  WARN 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Nome de busca não fornecido ou vazio.
+2025-12-09T20:14:38.092-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Criando cliente com email=joao.silva@email.com
+2025-12-09T20:14:38.092-03:00  WARN 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Tentativa de criar cliente duplicado com email=joao.silva@email.com
+2025-12-09T20:14:38.098-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Criando cliente com email=joao.silva@email.com
+2025-12-09T20:14:38.099-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Cliente criado com sucesso id=1 nome=João Silva email=joao.silva@email.com
+2025-12-09T20:14:38.104-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Buscando clientes por nome=Maria com paginação
+2025-12-09T20:14:38.104-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Total de clientes retornados nesta busca=0
+2025-12-09T20:14:38.104-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Nenhum cliente encontrado para o nome=Maria
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

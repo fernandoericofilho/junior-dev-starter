@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Testes para ClienteService</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Testes para ClienteService</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.junior_dev_start.tarefa13.services.html">com.junior_dev_start.tarefa13.services</a> &gt; ClienteServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">8</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.527s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">Deve lançar ClienteNotFoundException ao tentar remover cliente inexistente</td>
+<td class="success">deveLancarExcecaoAoRemoverClienteInexistente()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Deve lançar ClienteNotFoundException quando cliente não encontrado para atualização</td>
+<td class="success">deveLancarExcecaoQuandoClienteNaoEncontradoNaAtualizacao()</td>
+<td class="success">0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Deve lançar IllegalArgumentException quando email duplicado na atualização</td>
+<td class="success">deveLancarIllegalArgumentExceptionQuandoEmailDuplicadoNaAtualizacao()</td>
+<td class="success">0.485s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Deve lançar IllegalArgumentException ao tentar salvar cliente com email já cadastrado</td>
+<td class="success">deveLancarIllegalArgumentExceptionQuandoEmailJaExiste()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Deve remover cliente quando encontrado</td>
+<td class="success">deveRemoverClienteQuandoEncontrado()</td>
+<td class="success">0.013s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Deve retornar página vazia quando nenhum cliente encontrado por nome</td>
+<td class="success">deveRetornarPaginaVaziaQuandoNenhumClienteEncontradoPorNome()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Deve retornar página vazia quando nome for nulo ou vazio</td>
+<td class="success">deveRetornarPaginaVaziaQuandoNomeForNuloOuVazio()</td>
+<td class="success">0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Deve salvar cliente com sucesso quando dados válidos são fornecidos</td>
+<td class="success">deveSalvarClienteComSucesso()</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2025-12-09T20:14:38.026-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Atualizando cliente com email=joao.silva@email.com
+2025-12-09T20:14:38.033-03:00  WARN 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Tentativa de atualizar cliente com email duplicado=joao.silva@email.com
+2025-12-09T20:14:38.063-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Atualizando cliente com email=joao.silva@email.com
+2025-12-09T20:14:38.063-03:00  WARN 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Cliente com id=1 não encontrado.
+2025-12-09T20:14:38.086-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Buscando clientes por nome=null com paginação
+2025-12-09T20:14:38.086-03:00  WARN 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Nome de busca não fornecido ou vazio.
+2025-12-09T20:14:38.087-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Buscando clientes por nome=    com paginação
+2025-12-09T20:14:38.087-03:00  WARN 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Nome de busca não fornecido ou vazio.
+2025-12-09T20:14:38.092-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Criando cliente com email=joao.silva@email.com
+2025-12-09T20:14:38.092-03:00  WARN 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Tentativa de criar cliente duplicado com email=joao.silva@email.com
+2025-12-09T20:14:38.098-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Criando cliente com email=joao.silva@email.com
+2025-12-09T20:14:38.099-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Cliente criado com sucesso id=1 nome=João Silva email=joao.silva@email.com
+2025-12-09T20:14:38.104-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Buscando clientes por nome=Maria com paginação
+2025-12-09T20:14:38.104-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Total de clientes retornados nesta busca=0
+2025-12-09T20:14:38.104-03:00  INFO 67304 --- [tarefa13] [    Test worker] c.j.tarefa13.services.ClienteService     : Nenhum cliente encontrado para o nome=Maria
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.14</a> at 9 de dez. de 2025 20:14:38</p>
+</div>
+</div>
+</body>
+</html>

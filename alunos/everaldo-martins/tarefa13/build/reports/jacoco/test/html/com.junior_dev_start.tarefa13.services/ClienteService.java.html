@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClienteService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tarefa13</a> &gt; <a href="index.source.html" class="el_package">com.junior_dev_start.tarefa13.services</a> &gt; <span class="el_source">ClienteService.java</span></div><h1>ClienteService.java</h1><pre class="source lang-java linenums">package com.junior_dev_start.tarefa13.services;
+
+import com.junior_dev_start.tarefa13.dtos.ClienteRequestDTO;
+import com.junior_dev_start.tarefa13.dtos.ClienteResponseDTO;
+import com.junior_dev_start.tarefa13.exceptions.ClienteNotFoundException;
+import com.junior_dev_start.tarefa13.mappers.ClienteMapper;
+import com.junior_dev_start.tarefa13.models.Cliente;
+import com.junior_dev_start.tarefa13.repositories.ClienteRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+<span class="fc" id="L14">@Slf4j</span>
+@Service
+public class ClienteService {
+
+    private final ClienteRepository clienteRepository;
+
+    private final ClienteMapper clienteMapper;
+
+<span class="fc" id="L22">    public ClienteService(ClienteRepository clienteRepository, ClienteMapper clienteMapper) {</span>
+<span class="fc" id="L23">        this.clienteRepository = clienteRepository;</span>
+<span class="fc" id="L24">        this.clienteMapper = clienteMapper;</span>
+<span class="fc" id="L25">    }</span>
+
+    public ClienteResponseDTO salvar(ClienteRequestDTO dto) {
+<span class="fc" id="L28">        log.info(&quot;Criando cliente com email={}&quot;, dto.getEmail());</span>
+
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (clienteRepository.existsByEmail(dto.getEmail())) {</span>
+<span class="fc" id="L31">            log.warn(&quot;Tentativa de criar cliente duplicado com email={}&quot;, dto.getEmail());</span>
+<span class="fc" id="L32">            throw new IllegalArgumentException(&quot;Email já cadastrado: &quot; + dto.getEmail());</span>
+        }
+
+<span class="fc" id="L35">        Cliente cliente = clienteMapper.toEntity(dto);</span>
+<span class="fc" id="L36">        Cliente salvo = clienteRepository.save(cliente);</span>
+
+<span class="fc" id="L38">        log.info(&quot;Cliente criado com sucesso id={} nome={} email={}&quot;,</span>
+<span class="fc" id="L39">                salvo.getId(), salvo.getNome(), salvo.getEmail());</span>
+<span class="fc" id="L40">        return clienteMapper.toDTO(salvo);</span>
+    }
+
+    public Page&lt;ClienteResponseDTO&gt; listarTodos(Pageable pageable) {
+<span class="fc" id="L44">        log.info(&quot;Listando clientes - page={} size={} sort={}&quot;,</span>
+<span class="fc" id="L45">                pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());</span>
+<span class="fc" id="L46">        Page&lt;ClienteResponseDTO&gt; pageDTO = clienteRepository.findAll(pageable)</span>
+<span class="fc" id="L47">                .map(clienteMapper::toDTO);</span>
+<span class="fc" id="L48">        log.info(&quot;Total de clientes retornados nesta página={}&quot;, pageDTO.getNumberOfElements());</span>
+<span class="fc" id="L49">        return pageDTO;</span>
+    }
+
+    public ClienteResponseDTO buscarPorId(Long id) {
+<span class="fc" id="L53">        log.info(&quot;Buscando cliente por id={}&quot;, id);</span>
+<span class="fc" id="L54">        Cliente cliente = clienteRepository.findById(id)</span>
+<span class="fc" id="L55">                .orElseThrow(() -&gt; {</span>
+<span class="fc" id="L56">                    log.warn(&quot;Cliente não encontrado id={}&quot;, id);</span>
+<span class="fc" id="L57">                    return new ClienteNotFoundException(id);</span>
+                });
+<span class="fc" id="L59">        log.info(&quot;Cliente encontrado id={} nome={} email={}&quot;,</span>
+<span class="fc" id="L60">                cliente.getId(), cliente.getNome(), cliente.getEmail());</span>
+<span class="fc" id="L61">        return clienteMapper.toDTO(cliente);</span>
+    }
+
+    public Page&lt;ClienteResponseDTO&gt; buscarClientesPorNomePaginado(String nome, Pageable pageable) {
+<span class="fc" id="L65">        log.info(&quot;Buscando clientes por nome={} com paginação&quot;, nome);</span>
+
+<span class="fc bfc" id="L67" title="All 4 branches covered.">        if (nome == null || nome.trim().isEmpty()) {</span>
+<span class="fc" id="L68">            log.warn(&quot;Nome de busca não fornecido ou vazio.&quot;);</span>
+<span class="fc" id="L69">            return Page.empty(pageable);</span>
+        }
+
+<span class="fc" id="L72">        Page&lt;ClienteResponseDTO&gt; pageDTO = clienteRepository.findByNomeContainingIgnoreCase(nome, pageable)</span>
+<span class="fc" id="L73">                .map(clienteMapper::toDTO);</span>
+<span class="fc" id="L74">        log.info(&quot;Total de clientes retornados nesta busca={}&quot;, pageDTO.getNumberOfElements());</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (pageDTO.isEmpty()) {</span>
+<span class="fc" id="L76">            log.info(&quot;Nenhum cliente encontrado para o nome={}&quot;, nome);</span>
+        }
+
+<span class="fc" id="L79">        return pageDTO;</span>
+    }
+
+    public ClienteResponseDTO atualizar(Long id, ClienteRequestDTO dto) {
+<span class="fc" id="L83">        log.info(&quot;Atualizando cliente com email={}&quot;, dto.getEmail());</span>
+
+<span class="fc" id="L85">        Cliente cliente = clienteRepository.findById(id)</span>
+<span class="fc" id="L86">                .orElseThrow(() -&gt; {</span>
+<span class="fc" id="L87">                    log.warn(&quot;Cliente com id={} não encontrado.&quot;, id);</span>
+<span class="fc" id="L88">                    return new ClienteNotFoundException(id);</span>
+                });
+
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        if (clienteRepository.existsByEmail(dto.getEmail())) {</span>
+<span class="fc" id="L92">            log.warn(&quot;Tentativa de atualizar cliente com email duplicado={}&quot;, dto.getEmail());</span>
+<span class="fc" id="L93">            throw new IllegalArgumentException(&quot;Email já cadastrado: &quot; + dto.getEmail());</span>
+        }
+
+<span class="fc" id="L96">        clienteMapper.updateEntity(dto, cliente);</span>
+
+<span class="fc" id="L98">        Cliente atualizado = clienteRepository.save(cliente);</span>
+
+<span class="fc" id="L100">        log.info(&quot;Cliente atualizado com sucesso id={} nome={} email={}&quot;,</span>
+<span class="fc" id="L101">                atualizado.getId(), atualizado.getNome(), atualizado.getEmail());</span>
+<span class="fc" id="L102">        return clienteMapper.toDTO(atualizado);</span>
+    }
+
+    public ClienteResponseDTO remover(Long id) {
+<span class="fc" id="L106">        Cliente cliente = clienteRepository.findById(id)</span>
+<span class="fc" id="L107">                .orElseThrow(() -&gt; new ClienteNotFoundException(id));</span>
+<span class="fc" id="L108">        clienteRepository.delete(cliente);</span>
+<span class="fc" id="L109">        return clienteMapper.toDTO(cliente);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
